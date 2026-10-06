@@ -1,0 +1,1316 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teilbarkeit üben – Klasse 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --paper:#FBFCFF;--grid:#DCE6F6;--ink:#1B2440;--ink-soft:#4A5678;--line:#C5D0E6;--card:#FFFFFF;--focus:#2B5BFF;
+  --wissen:#1B7F45;--wissen-bg:#E2F4E9;--wissen-ink:#0E5230;--on-wissen:#FFFFFF;
+  --leicht:#F28A1B;--leicht-bg:#FFEEDB;--leicht-ink:#7C3500;--on-leicht:#2B1400;
+  --mittel:#C4177F;--mittel-bg:#FCE6F2;--mittel-ink:#7B0B50;--on-mittel:#FFFFFF;
+  --schwer:#6C3BAA;--schwer-bg:#ECE5F8;--schwer-ink:#40207A;--on-schwer:#FFFFFF;
+  --ok:#1B7F45;--ok-bg:#E2F4E9;--bad:#B3261E;--bad-bg:#FDE9E7;--info-bg:#E8EEFF;
+  --ink-btn:#1B2440;--on-ink-btn:#FFFFFF;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]){
+  --paper:#121631;--grid:#1D2447;--ink:#EAEDFB;--ink-soft:#B0B9D8;--line:#38416B;--card:#1A1F3F;--focus:#8FB0FF;
+  --wissen:#4CC282;--wissen-bg:#123020;--wissen-ink:#A9EBC6;--on-wissen:#08200F;
+  --leicht:#F28A1B;--leicht-bg:#3A2410;--leicht-ink:#FFD0A4;--on-leicht:#2B1400;
+  --mittel:#FF6CC0;--mittel-bg:#3B1331;--mittel-ink:#FFB8E3;--on-mittel:#2A0620;
+  --schwer:#B594F0;--schwer-bg:#2A1F4B;--schwer-ink:#DACBFA;--on-schwer:#1E0F3D;
+  --ok:#5BD08F;--ok-bg:#123020;--bad:#FF8A80;--bad-bg:#3D1A1A;--info-bg:#232B57;
+  --ink-btn:#EAEDFB;--on-ink-btn:#121631;
+}}
+:root[data-theme="dark"]{
+  --paper:#121631;--grid:#1D2447;--ink:#EAEDFB;--ink-soft:#B0B9D8;--line:#38416B;--card:#1A1F3F;--focus:#8FB0FF;
+  --wissen:#4CC282;--wissen-bg:#123020;--wissen-ink:#A9EBC6;--on-wissen:#08200F;
+  --leicht:#F28A1B;--leicht-bg:#3A2410;--leicht-ink:#FFD0A4;--on-leicht:#2B1400;
+  --mittel:#FF6CC0;--mittel-bg:#3B1331;--mittel-ink:#FFB8E3;--on-mittel:#2A0620;
+  --schwer:#B594F0;--schwer-bg:#2A1F4B;--schwer-ink:#DACBFA;--on-schwer:#1E0F3D;
+  --ok:#5BD08F;--ok-bg:#123020;--bad:#FF8A80;--bad-bg:#3D1A1A;--info-bg:#232B57;
+  --ink-btn:#EAEDFB;--on-ink-btn:#121631;
+}
+
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 12px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:26px 26px;color:var(--ink);
+  font-family:'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  font-size:18px;line-height:1.55;-webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','Atkinson Hyperlegible',system-ui,'Segoe UI',Arial,sans-serif;font-weight:800;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5vw,3rem)}h2{font-size:1.6rem}h3{font-size:1.15rem}h4{font-size:1.05rem}
+p{margin:0 0 .8em}
+b,strong{font-weight:700}
+button{font:inherit;cursor:pointer}
+#main:focus{outline:none}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:8px 14px;z-index:20}
+.skip:focus{left:8px;top:8px}
+
+.shell{max-width:1140px;margin:0 auto;padding:22px 18px 40px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;align-items:start}
+#nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--card);border:2px solid var(--ink);border-radius:6px 20px 6px 20px;padding:16px 14px 14px}
+.brand{display:block;width:100%;text-align:left;background:none;border:0;padding:2px 6px 12px;color:var(--ink)}
+.brand strong{display:block;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:1.5rem;line-height:1.1}
+.brand span{font-size:.85rem;color:var(--ink-soft)}
+.navlist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.navbtn{width:100%;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;text-align:left;background:transparent;color:var(--ink);border:2px solid transparent;border-radius:10px;padding:8px 8px}
+.navbtn:hover{background:var(--info-bg)}
+.navbtn[aria-current="page"]{border-color:var(--ink);background:var(--info-bg)}
+.navbtn .no{display:grid;place-items:center;width:34px;height:34px;border-radius:8px 2px 8px 2px;background:var(--ink);color:var(--paper);font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800}
+.navbtn .tt{font-weight:700;font-size:.95rem;line-height:1.2}
+.navbtn .meta{display:flex;gap:8px;align-items:center;font-size:.78rem;color:var(--ink-soft);margin-top:2px}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;min-width:40px}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:3px}
+.tag-neu{background:var(--mittel);color:var(--on-mittel);font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:99px;margin-left:6px}
+.tag-lock{border:1.5px dashed var(--ink-soft);color:var(--ink-soft);font-size:.7rem;padding:0 6px;border-radius:99px;margin-left:6px}
+.navhint{font-size:.82rem;color:var(--ink-soft);margin:12px 6px 0}
+
+#main{min-width:0}
+.panel{background:var(--card);border:2px solid var(--ink);border-radius:6px 20px 6px 20px;padding:22px 24px}
+.hero{padding:28px 28px 24px}
+.hero h1{margin-bottom:.25em}
+.hero .sub{font-size:1.15rem;max-width:34em;color:var(--ink-soft)}
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0 4px}
+.lg{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;border:2px solid;font-size:.95rem;line-height:1.3}
+.lg b{display:block}
+.lg .sw{width:22px;height:22px;border-radius:6px}
+.lg.w{background:var(--wissen-bg);border-color:var(--wissen);color:var(--wissen-ink)}.lg.w .sw{background:var(--wissen)}
+.lg.l1{background:var(--leicht-bg);border-color:var(--leicht);color:var(--leicht-ink)}.lg.l1 .sw{background:var(--leicht)}
+.lg.l2{background:var(--mittel-bg);border-color:var(--mittel);color:var(--mittel-ink)}.lg.l2 .sw{background:var(--mittel)}
+.lg.l3{background:var(--schwer-bg);border-color:var(--schwer);color:var(--schwer-ink)}.lg.l3 .sw{background:var(--schwer)}
+.newbox{margin-top:20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--mittel-bg);border:2px solid var(--mittel);color:var(--mittel-ink);border-radius:14px;padding:14px 18px}
+.newbox strong{display:block;font-size:1.05rem}
+.stack{display:grid;gap:18px}
+.chgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:14px}
+.chcard{display:grid;gap:6px;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:4px 16px 4px 16px;padding:14px 16px}
+.chcard:hover{background:var(--info-bg)}
+.chcard .no{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:1.7rem;line-height:1}
+.chcard .tt{font-weight:700}
+.chcard .meta{font-size:.85rem;color:var(--ink-soft)}
+.empty{color:var(--ink-soft)}
+
+.chead{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;margin-bottom:14px}
+.chead .nr{display:grid;place-items:center;width:58px;height:58px;border-radius:10px 3px 10px 3px;background:var(--ink);color:var(--paper);font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:1.9rem}
+.chead h1{margin:0 0 .15em;font-size:clamp(1.6rem,4vw,2.4rem)}
+.chead .lead{margin:0;color:var(--ink-soft)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.jump button{background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:99px;padding:6px 16px;font-weight:700;font-size:.95rem}
+.jump button:hover{background:var(--info-bg)}
+
+.wissen{background:var(--wissen-bg);color:var(--ink);border:2px solid var(--wissen);border-top:8px solid var(--wissen);border-radius:4px 18px 18px 18px;padding:20px 24px 18px;margin-bottom:26px}
+.wissen h2{color:var(--wissen-ink)}
+.wissen h3,.wissen h4{color:var(--wissen-ink);margin-top:1em}
+.wissen h2+h3,.wissen h2+h4{margin-top:.2em}
+.wissen .k{white-space:nowrap}
+.merk{background:var(--wissen);color:var(--on-wissen);border-radius:10px;padding:12px 16px;margin:14px 0;font-weight:700}
+.merk em{font-style:normal;font-weight:400;display:block}
+.beispiel{background:var(--card);border-left:6px solid var(--wissen);border-radius:4px 10px 10px 4px;padding:10px 14px;margin:12px 0}
+.warn{background:var(--card);border:2px dashed var(--wissen);border-radius:10px;padding:10px 14px;margin:12px 0}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}
+.term{background:var(--card);border:2px solid var(--wissen);border-radius:10px 2px 10px 2px;padding:12px 14px}
+.term>b{display:block;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.3rem;color:var(--wissen-ink)}
+.term p{margin:.2em 0 0;font-size:.98rem}
+.wissen table{border-collapse:collapse;width:100%;background:var(--card);font-size:.98rem;margin:10px 0}
+.wissen th,.wissen td{border:1.5px solid var(--wissen);padding:6px 10px;text-align:left;vertical-align:top}
+.wissen th{background:var(--wissen);color:var(--on-wissen)}
+.tscroll{overflow-x:auto;max-width:100%}
+.mono{font-variant-numeric:tabular-nums}
+
+.tool{background:var(--card);border:2px solid var(--wissen);border-radius:12px;padding:14px 16px;margin:16px 0 4px;color:var(--ink)}
+.tool h4{margin:0 0 .5em;color:var(--wissen-ink)}
+.trow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+.tin{font:inherit;width:8.5em;padding:6px 10px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink)}
+.tout{background:var(--wissen-bg);border-radius:8px;padding:10px 12px;margin-top:8px;color:var(--wissen-ink);min-height:2.4em}
+.tout.no{background:var(--bad-bg);color:var(--bad)}
+.tout .steps{margin:.3em 0 0;padding-left:1.1em}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip-b{background:var(--paper);color:var(--ink);border:2px solid var(--wissen);border-radius:99px;padding:3px 14px;font-weight:700}
+.chip-b[aria-pressed="true"]{background:var(--wissen);color:var(--on-wissen)}
+.htafel{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;margin:8px 0;max-width:520px}
+.htafel span{display:grid;place-items:center;aspect-ratio:1/1;font-size:.85rem;background:var(--paper);border:1.5px solid var(--line);border-radius:4px;color:var(--ink)}
+.htafel span.hit{background:var(--wissen);color:var(--on-wissen);border-color:var(--wissen);font-weight:700}
+
+.section-h{margin:30px 0 10px}
+.taskinfo{color:var(--ink-soft);margin-bottom:12px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.fbtn{border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:99px;padding:5px 14px;font-weight:700;font-size:.92rem}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.fbtn.l1{border-color:var(--leicht)}.fbtn.l1[aria-pressed="true"]{background:var(--leicht);color:var(--on-leicht)}
+.fbtn.l2{border-color:var(--mittel)}.fbtn.l2[aria-pressed="true"]{background:var(--mittel);color:var(--on-mittel)}
+.fbtn.l3{border-color:var(--schwer)}.fbtn.l3[aria-pressed="true"]{background:var(--schwer);color:var(--on-schwer)}
+.group{margin-bottom:26px}
+.group>h3{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:10px;margin-bottom:12px}
+.group.l1>h3{background:var(--leicht);color:var(--on-leicht)}
+.group.l2>h3{background:var(--mittel);color:var(--on-mittel)}
+.group.l3>h3{background:var(--schwer);color:var(--on-schwer)}
+.group>h3 small{font-family:'Atkinson Hyperlegible',system-ui,sans-serif;font-weight:400;font-size:.9rem;opacity:.95}
+
+.task{--c:var(--ink);--cbg:var(--paper);--cink:var(--ink);--on:#fff;background:var(--card);border:2px solid var(--c);border-left-width:12px;border-radius:4px 16px 16px 4px;padding:16px 20px 16px;margin-bottom:14px}
+.task.l1{--c:var(--leicht);--cbg:var(--leicht-bg);--cink:var(--leicht-ink);--on:var(--on-leicht)}
+.task.l2{--c:var(--mittel);--cbg:var(--mittel-bg);--cink:var(--mittel-ink);--on:var(--on-mittel)}
+.task.l3{--c:var(--schwer);--cbg:var(--schwer-bg);--cink:var(--schwer-ink);--on:var(--on-schwer)}
+.thead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.thead h3{margin:0}
+.chip{background:var(--c);color:var(--on);font-weight:700;font-size:.82rem;padding:2px 10px;border-radius:99px;letter-spacing:.02em;white-space:nowrap}
+.done-badge{margin-left:auto;color:var(--ok);font-weight:700;font-size:.95rem}
+.done-badge[hidden]{display:none}
+.q{margin-bottom:10px}
+.q .box{display:inline-block;min-width:1.1em;text-align:center;border:2px solid var(--ink);border-radius:4px;line-height:1.1;font-weight:700;padding:0 3px}
+.ans{margin:8px 0 12px}
+.inp{font:inherit;padding:8px 12px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);width:100%;max-width:26em}
+.w-num .inp{max-width:9em}
+.unit{margin-left:8px}
+textarea.inp{max-width:100%;min-height:6.5em;resize:vertical}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer;background:var(--paper)}
+.opt:hover{border-color:var(--c)}
+.opt input{width:20px;height:20px;accent-color:var(--c);flex:none}
+.opt:has(input:checked){border-color:var(--c);background:var(--cbg);color:var(--cink)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--ink)}
+.tf{width:100%;border-collapse:collapse}
+.tf td{padding:6px 8px;border-bottom:1.5px solid var(--line);vertical-align:middle}
+.tf tr.wrong td{background:var(--bad-bg)}
+.tf td.tfo{white-space:nowrap;width:1%}
+.tf label{margin-right:10px;cursor:pointer;white-space:nowrap}
+.tf input,.gridt input{width:20px;height:20px;accent-color:var(--c);vertical-align:-4px}
+.cloze{line-height:2.3}
+.cloze select{font:inherit;padding:4px 8px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);margin:0 2px}
+.cloze select.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.gscroll{overflow-x:auto;max-width:100%}
+.gridt{border-collapse:collapse;min-width:280px}
+.gridt th,.gridt td{border:1.5px solid var(--line);padding:6px 10px;text-align:center}
+.gridt th{background:var(--cbg);color:var(--cink);font-size:.9rem}
+.gridt td:first-child,.gridt th:first-child{text-align:left;font-weight:700}
+.gridt tr.wrong td{background:var(--bad-bg)}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:2px solid var(--c);border-radius:10px;padding:8px 16px;font-weight:700;background:var(--card);color:var(--ink)}
+.btn.primary{background:var(--c);color:var(--on)}
+.btn.ghost:hover{background:var(--cbg)}
+.btn[disabled]{opacity:.55;cursor:default}
+.btn.ink{--c:var(--ink-btn);background:var(--ink-btn);color:var(--on-ink-btn);border-color:var(--ink-btn)}
+.btn.line{--c:var(--ink);background:var(--card);color:var(--ink);border-color:var(--ink)}
+.tips{display:grid;gap:8px;margin-top:10px}
+.tip{background:var(--cbg);color:var(--cink);border-radius:10px;padding:8px 12px;display:grid;grid-template-columns:auto 1fr;gap:8px}
+.fb{margin-top:10px;font-weight:700}
+.fb:empty{display:none}
+.fb .m{display:block;padding:8px 12px;border-radius:10px}
+.fb .ok{background:var(--ok-bg);color:var(--ok)}
+.fb .bad{background:var(--bad-bg);color:var(--bad)}
+.fb .info{background:var(--info-bg);color:var(--ink)}
+.sol{margin-top:12px;border:2px dashed var(--c);border-radius:12px;padding:10px 14px;background:var(--card)}
+.sol h4{margin:0 0 .3em}
+.sol p{margin:.2em 0}
+.sol ul{margin:.2em 0;padding-left:1.2em}
+.crit{margin-top:8px}
+.crit label{display:block;cursor:pointer}
+.crit input{accent-color:var(--c);width:18px;height:18px;vertical-align:-3px;margin-right:6px}
+
+.quiz{background:var(--card);border:2px solid var(--ink);border-radius:18px 4px 18px 4px;padding:20px 24px}
+.quiz h2{margin-bottom:.3em}
+.qprog{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-weight:700}
+.qq{font-size:1.15rem;font-weight:700;margin-bottom:12px}
+.qopts{display:grid;gap:8px}
+.qopt{text-align:left;border:2px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink);padding:10px 14px}
+.qopt:hover:not([disabled]){background:var(--info-bg)}
+.qopt.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+.qopt.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--ink)}
+.qopt[disabled]{cursor:default}
+.qexp{margin-top:12px;padding:10px 14px;border-radius:10px;background:var(--info-bg)}
+.qres{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:2.4rem;line-height:1;margin:.2em 0}
+.review{list-style:none;padding:0;margin:14px 0;display:grid;gap:6px}
+.review li{display:grid;grid-template-columns:auto 1fr;gap:8px;font-size:.95rem}
+.review .r-ok{color:var(--ok);font-weight:700}.review .r-bad{color:var(--bad);font-weight:700}
+.kann{background:var(--card);border:2px solid var(--wissen);border-radius:12px;padding:14px 20px}
+.kann label{display:flex;gap:10px;align-items:flex-start;padding:5px 0;cursor:pointer}
+.kann input{width:22px;height:22px;accent-color:var(--wissen);flex:none;margin-top:2px}
+
+footer.site{max-width:1140px;margin:0 auto;padding:0 18px 30px;font-size:.85rem;color:var(--ink-soft);display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.linkbtn{background:none;border:0;padding:0;color:var(--ink-soft);text-decoration:underline;font-size:.85rem}
+#teacherbar{position:sticky;top:0;z-index:10;background:var(--schwer);color:var(--on-schwer);padding:8px 18px;padding-top:calc(8px + env(safe-area-inset-top,0px));font-size:.92rem;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+#teacherbar[hidden]{display:none}
+#teacherbar button{background:var(--on-schwer);color:var(--schwer);border:0;border-radius:8px;padding:4px 12px;font-weight:700}
+dialog{border:2px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink);padding:20px 22px;max-width:min(92vw,420px)}
+dialog::backdrop{background:rgba(10,14,40,.55)}
+dialog .trow{margin-top:12px}
+.err{color:var(--bad);font-weight:700;min-height:1.4em}
+
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr);padding:14px 12px 30px;gap:16px}
+  #nav{position:static;padding:12px}
+  .navlist{display:flex;overflow-x:auto;gap:8px;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .navlist li{flex:0 0 auto}
+  .navbtn{width:auto;min-width:150px;max-width:210px;border-color:var(--line)}
+  .navhint{display:none}
+  .trio{grid-template-columns:1fr}
+  .legend{grid-template-columns:1fr}
+  .panel{padding:16px}
+  .hero{padding:20px 18px}
+  .wissen{padding:16px 16px 14px}
+  .task{padding:14px 14px}
+  body{font-size:17px}
+  .tf td.tfo{display:block;width:auto;border-bottom:0;padding-top:0}
+  .tf td:first-child{display:block;border-bottom:0;padding-bottom:2px}
+  .tf tr{display:block;border-bottom:1.5px solid var(--line);padding-bottom:6px}
+}
+@media print{#nav,.jump,.actions,#teacherbar,footer.site{display:none}body{background:#fff}.shell{display:block}}
+.lvlpick{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+.lvlbtn{--c:var(--ink);--cbg:var(--card);--cink:var(--ink);--on:var(--paper);display:grid;gap:2px;text-align:left;border:3px solid var(--c);border-radius:4px 16px 4px 16px;background:var(--cbg);color:var(--cink);padding:12px 16px}
+.lvlbtn.l1{--c:var(--leicht);--cbg:var(--leicht-bg);--cink:var(--leicht-ink);--on:var(--on-leicht)}
+.lvlbtn.l2{--c:var(--mittel);--cbg:var(--mittel-bg);--cink:var(--mittel-ink);--on:var(--on-mittel)}
+.lvlbtn.l3{--c:var(--schwer);--cbg:var(--schwer-bg);--cink:var(--schwer-ink);--on:var(--on-schwer)}
+.lvlbtn b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.25rem;line-height:1.2}
+.lvlbtn span,.lvlbtn small{font-size:.92rem}
+.lvlbtn:hover{filter:brightness(.97)}
+.lvlbtn[aria-pressed="true"]{background:var(--c);color:var(--on)}
+.lvlbtn[aria-pressed="true"]::after{content:"✓ gewählt";font-weight:700;font-size:.85rem}
+.pickhint{color:var(--ink-soft);margin:0 0 12px}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div id="teacherbar" hidden>
+  <span>Lehrkraft-Vorschau: Du siehst alle Kapitel. Die Kinder sehen nur die freigegebenen (aktuell: Kapitel <span id="open-list"></span>).</span>
+  <button type="button" id="endteacher">Vorschau beenden</button>
+</div>
+<div class="shell">
+  <aside id="nav" aria-label="Kapitel"></aside>
+  <main id="main"></main>
+</div>
+<footer class="site">
+  <span>Übungsseite zur Unterrichtsreihe „Teilbarkeit“ · Klasse 6 · dein Fortschritt wird nur auf diesem Gerät gespeichert</span>
+  <button class="linkbtn" type="button" id="openpin">Lehrkraft</button>
+</footer>
+<dialog id="pin" aria-labelledby="pintitle">
+  <form id="pinform">
+    <h3 id="pintitle">Lehrkraft-Vorschau</h3>
+    <p>Mit dem Passwort siehst du auf deinem Gerät alle Kapitel, auch die noch nicht freigegebenen.</p>
+    <label for="pinin">Passwort</label><br>
+    <input id="pinin" class="tin" type="password" autocomplete="off" style="width:100%;margin-top:4px">
+    <div class="err" id="pinerr" role="alert"></div>
+    <div class="trow"><button class="btn ink" type="submit">Öffnen</button><button class="btn line" type="button" id="pincancel">Abbrechen</button></div>
+  </form>
+</dialog>
+<script>
+/* =====================================================================
+   FREISCHALTUNG DURCH DIE LEHRKRAFT
+   Nur die hier eingetragenen Kapitel sehen die Kinder.
+   Neues Kapitel freigeben: Kennung ergänzen, z. B. ['k1','k2'] – dann neu veröffentlichen.
+   Kennungen: k1 Grundbegriffe · k2 Teiler & Vielfache · k3 Regeln 2, 5, 10 ·
+              k4 Regeln 4 und 8 · k5 Regeln 3 und 9 · k6 Regel 6 & Kombinieren · k7 Alles anwenden
+   ===================================================================== */
+const FREIGEGEBEN = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7'];
+const NEU = 'k7';              // Kapitel, das mit „neu“ markiert wird
+const LEHRKRAFT_PIN = 'Teiler26'; // Vorschau-Ansicht mit allen Kapiteln (nur lokal, ohne Freischaltung)
+
+/* ---------- Hilfsfunktionen ---------- */
+const NB = '\u00A0';
+const f = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, NB);
+const divs = n => { const r = []; for (let i = 1; i <= n; i++) if (n % i === 0) r.push(i); return r; };
+const mults = (d, a, b) => { const r = []; for (let i = Math.ceil(a / d) * d; i <= b; i += d) r.push(i); return r; };
+const first = (d, k) => Array.from({ length: k }, (_, i) => d * (i + 1));
+const qs = n => String(n).split('').reduce((s, c) => s + (+c), 0);
+const tfN = (n, d) => [`${f(n)} ist durch ${d} teilbar.`, n % d === 0];
+
+/* Aufgaben-Bausteine (lvl 1 = leicht/orange, 2 = mittel/magenta, 3 = schwer/lila) */
+const mc    = (lvl, q, ok, bad, tips, sol) => ({ lvl, type: 'mc', q, opts: [ok, ...bad], ok: [0], tips, sol });
+const multi = (lvl, q, ok, bad, tips, sol) => ({ lvl, type: 'multi', q, opts: [...ok, ...bad].map(String), ok: ok.map((_, i) => i), tips, sol });
+const num   = (lvl, q, answer, tips, sol, o = {}) => ({ lvl, type: 'num', q, answer, tips, sol, ...o });
+const set   = (lvl, q, answer, tips, sol, o = {}) => ({ lvl, type: 'set', q, answer, tips, sol, ...o });
+const tf    = (lvl, q, items, tips, sol) => ({ lvl, type: 'tf', q, items, tips, sol });
+const cloze = (lvl, q, text, blanks, answer, tips, sol) => ({ lvl, type: 'cloze', q, text, blanks, answer, tips, sol });
+const grid  = (lvl, q, nums, cols, tips, sol) => ({ lvl, type: 'grid', q, nums, cols, tips, sol });
+const open  = (lvl, q, tips, sol, crit) => ({ lvl, type: 'open', q, tips, sol, crit });
+
+/* Quiz-Bausteine: die richtige Antwort steht immer zuerst, die Reihenfolge wird beim Start gemischt */
+const qz = (q, ok, bad, expl) => ({ q, opts: [ok, ...bad], expl });
+const pick = (q, pred, nums, expl) => {
+  const okn = nums.filter(pred);
+  if (okn.length !== 1) throw new Error('pick: genau eine richtige Zahl nötig: ' + q + ' -> ' + okn.join(','));
+  return { q, opts: [f(okn[0]), ...nums.filter(n => !pred(n)).map(f)], expl };
+};
+const BOX = '<span class="box">□</span>';
+
+const CHAPTERS = [];
+
+/* ============================ Kapitel 1 ============================ */
+CHAPTERS.push({
+  id: 'k1', nr: 1, title: 'teilbar, Teiler, Vielfaches',
+  lead: 'Drei Wörter, eine Aussage: Du lernst, wie sie zusammenhängen und wie du sie richtig benutzt.',
+  wissen: `
+<h2>Das musst du wissen</h2>
+<p>Wenn du eine Zahl durch eine andere teilst, bleibt entweder <b>kein Rest</b> oder ein Rest. Davon hängen drei wichtige Fachbegriffe ab:</p>
+<div class="trio">
+  <div class="term"><b>teilbar</b><p>24 ist durch 6 <b>teilbar</b>, weil bei 24 : 6 kein Rest bleibt.</p></div>
+  <div class="term"><b>Teiler</b><p>6 ist ein <b>Teiler</b> von 24, denn 6 teilt 24 ohne Rest.</p></div>
+  <div class="term"><b>Vielfaches</b><p>24 ist ein <b>Vielfaches</b> von 6, denn 6 · 4 = 24.</p></div>
+</div>
+<div class="merk">Diese drei Sätze sagen dasselbe:
+  <em>24 ist durch 6 teilbar ↔ 6 ist ein Teiler von 24 ↔ 24 ist ein Vielfaches von 6.</em></div>
+<div class="merk">Wenn a ein Teiler von b ist, dann ist b ein Vielfaches von a.</div>
+<h3>Wenn ein Rest bleibt</h3>
+<div class="beispiel">25 : 6 = 4 Rest 1<br>→ 25 ist <b>nicht</b> durch 6 teilbar. 6 ist <b>kein</b> Teiler von 25. 25 ist <b>kein</b> Vielfaches von 6.</div>
+<h3>So erklärst du es richtig</h3>
+<div class="beispiel">„24 ist durch 6 teilbar, weil 24 : 6 = 4 ohne Rest. Deshalb ist 6 ein Teiler von 24 und 24 ein Vielfaches von 6.“</div>
+<p>Wichtig ist nicht nur das Rechnen. Du sollst auch <b>mit den Fachbegriffen erklären</b>, was du gefunden hast.</p>`,
+  tool: { type: 'tester' },
+  tasks: [
+    mc(1, 'Bei 18 : 3 = 6 bleibt kein Rest. Welche Aussage stimmt?',
+      '18 ist durch 3 teilbar.',
+      ['3 ist ein Vielfaches von 18.', '18 ist ein Teiler von 3.', '6 ist ein Teiler von 3.'],
+      ['Kein Rest bedeutet: Die Zahl ist teilbar.', 'Der Teiler ist die Zahl, durch die du teilst.'],
+      '18 : 3 = 6 ohne Rest. Also ist 18 durch 3 teilbar, 3 ist ein Teiler von 18 und 18 ist ein Vielfaches von 3.'),
+    cloze(1, 'Wähle die passenden Wörter aus.',
+      '20 ist ein {0} von 4. Und 4 ist ein {1} von 20. Es gilt: 20 ist durch 4 {2}.',
+      [['Teiler', 'Vielfaches', 'teilbar', 'nicht teilbar'], ['Teiler', 'Vielfaches', 'teilbar', 'nicht teilbar'], ['Teiler', 'Vielfaches', 'teilbar', 'nicht teilbar']],
+      ['Vielfaches', 'Teiler', 'teilbar'],
+      ['4 · 5 = 20. Das Ergebnis einer Malaufgabe ist ein Vielfaches.', 'Der Teiler ist die Zahl, durch die du teilst.'],
+      '4 · 5 = 20, also ist 20 ein Vielfaches von 4 und 4 ein Teiler von 20. 20 : 4 = 5 ohne Rest, deshalb ist 20 durch 4 teilbar.'),
+    tf(1, 'Rechne und entscheide: wahr oder falsch?',
+      [tfN(12, 4), tfN(15, 4), tfN(20, 5), tfN(21, 5)],
+      ['Rechne die Divisionsaufgabe. Bleibt ein Rest?', 'Nutze das Einmaleins: 4 · 3 = 12, 5 · 4 = 20, …'],
+      '12 : 4 = 3 ohne Rest. 15 : 4 = 3 Rest 3. 20 : 5 = 4 ohne Rest. 21 : 5 = 4 Rest 1.'),
+
+    tf(2, 'Wahr oder falsch?',
+      [['7 ist ein Teiler von 56.', true], ['56 ist ein Vielfaches von 9.', false], ['9 ist ein Teiler von 81.', true], ['45 ist ein Vielfaches von 5.', true], ['3 ist ein Vielfaches von 12.', false]],
+      ['Prüfe mit dem Einmaleins: 7 · 8 = 56, 9 · 6 = 54, 9 · 9 = 81, 5 · 9 = 45.', 'Ein Vielfaches ist nie kleiner als die Zahl selbst. Achtung bei der letzten Aussage!'],
+      '56 = 7 · 8 ✓. Bei 9 gilt 9 · 6 = 54 und 9 · 7 = 63, also ist 56 kein Vielfaches von 9. 81 = 9 · 9 ✓. 45 = 5 · 9 ✓. 3 ist kleiner als 12 und kann deshalb kein Vielfaches von 12 sein (12 ist ein Vielfaches von 3).'),
+    multi(2, 'Aus 8 · 5 = 40 kannst du Aussagen ableiten. Welche sind richtig? (Es können mehrere sein.)',
+      ['40 ist ein Vielfaches von 8.', '5 ist ein Teiler von 40.', '40 ist durch 5 teilbar.'],
+      ['8 ist ein Vielfaches von 40.', '5 ist ein Vielfaches von 40.'],
+      ['Aus einer Malaufgabe kannst du Teiler und Vielfache ablesen.', 'Das Ergebnis der Malaufgabe ist das Vielfache. Die beiden Faktoren sind Teiler.'],
+      '8 · 5 = 40: Die Faktoren 8 und 5 sind Teiler von 40. 40 ist ein Vielfaches von 8 und von 5 und deshalb durch beide Zahlen teilbar.'),
+    num(2, '42 Äpfel sollen gleichmäßig auf 5 Körbe verteilt werden. Wie viele Äpfel bleiben übrig?', 2,
+      ['Rechne 42 : 5 mit Rest.', '5 · 8 = 40. Wie weit ist 42 davon entfernt?'],
+      '42 : 5 = 8 Rest 2. Es bleiben 2 Äpfel übrig. Deshalb ist 42 nicht durch 5 teilbar.', { unit: 'Äpfel' }),
+
+    open(3, 'Erkläre mit den Wörtern <b>teilbar</b>, <b>Teiler</b> und <b>Vielfaches</b>, was 48 : 8 = 6 bedeutet.',
+      ['Beginne so: „48 ist durch 8 teilbar, weil …“', 'Verwende „deshalb“, um die Sätze zu verbinden. Zu welcher Malaufgabe gehört 48 : 8 = 6?'],
+      '48 ist durch 8 teilbar, weil 48 : 8 = 6 ohne Rest. Deshalb ist 8 ein Teiler von 48 und 48 ein Vielfaches von 8.',
+      ['Alle drei Wörter (teilbar, Teiler, Vielfaches) kommen vor.', 'Ich habe „weil“ oder „deshalb“ benutzt.', 'Meine Aussagen stimmen mit der Musterlösung überein.']),
+    multi(3, 'Welche Zahlen sind <b>Teiler von 30</b> und zugleich <b>Vielfache von 5</b>? (Es können mehrere sein.)',
+      ['5', '10', '15', '30'], ['6', '20', '25'],
+      ['Prüfe jede Zahl zweimal: Teilt sie 30 ohne Rest? Steht sie im 5er-Einmaleins?', 'Vielfache von 5: 5, 10, 15, 20, 25, 30, …'],
+      'Teiler von 30 sind 1, 2, 3, 5, 6, 10, 15 und 30. Davon stehen 5, 10, 15 und 30 im 5er-Einmaleins. 6 ist kein Vielfaches von 5, 20 und 25 teilen 30 nicht.'),
+    tf(3, 'Wahr oder falsch? Überlege mit Beispielen.',
+      [['Jede Zahl ist ein Teiler von sich selbst.', true], ['Die Zahl 1 ist ein Teiler jeder Zahl.', true], ['Jede Zahl ist ein Vielfaches von sich selbst.', true], ['Wenn a ein Vielfaches von b ist, dann ist a kleiner als b.', false], ['Wenn 9 ein Teiler von b ist, dann ist b ein Vielfaches von 9.', true]],
+      ['Probiere Beispiele: 7 : 7 = ?, 7 : 1 = ?', 'Gib für die vierte Aussage ein Gegenbeispiel an: 12 und 4.'],
+      '7 : 7 = 1 und 7 · 1 = 7 – jede Zahl ist Teiler und Vielfaches von sich selbst. 1 teilt jede Zahl ohne Rest. 12 ist ein Vielfaches von 4, aber 12 ist größer als 4 (nicht kleiner). Die letzte Aussage ist der Merksatz.'),
+  ],
+  quiz: [
+    qz('Welcher Satz ist richtig?', '15 ist ein Vielfaches von 5.', ['15 ist ein Teiler von 5.', '5 ist ein Vielfaches von 15.', '15 ist nicht durch 5 teilbar.'], '5 · 3 = 15. Also ist 15 ein Vielfaches von 5 und 5 ein Teiler von 15.'),
+    qz('Was bedeutet „teilbar“?', 'Bei der Division bleibt kein Rest.', ['Das Ergebnis ist kleiner als 10.', 'Die Zahl ist gerade.', 'Die Zahl ist durch 2 teilbar.'], 'Eine Zahl ist durch eine andere teilbar, wenn die Division ohne Rest aufgeht.'),
+    qz('Eine Zahl ist durch 7 teilbar. Was gilt dann sicher?', 'Sie ist ein Vielfaches von 7.', ['Sie ist ein Teiler von 7.', 'Sie ist kleiner als 7.', 'Sie ist gerade.'], 'Teilbar durch 7 heißt: Die Zahl steht im 7er-Einmaleins – sie ist ein Vielfaches von 7.'),
+    pick('Welche Zahl ist ein Vielfaches von 8?', n => n % 8 === 0, [28, 42, 56, 60], '56 = 8 · 7. Die anderen Zahlen lassen bei der Division durch 8 einen Rest.'),
+    qz('36 : 9 = 4 geht ohne Rest auf. Welche Aussage ist <b>falsch</b>?', '9 ist ein Vielfaches von 36.', ['36 ist durch 9 teilbar.', '9 ist ein Teiler von 36.', '36 ist ein Vielfaches von 9.'], 'Richtig wäre: 36 ist ein Vielfaches von 9. Ein Vielfaches ist nie kleiner als die Zahl, von der es ein Vielfaches ist.'),
+  ],
+  kann: ['Ich kann erklären, was teilbar bedeutet.', 'Ich kann erklären, was ein Teiler ist.', 'Ich kann erklären, was ein Vielfaches ist.', 'Ich kann die Begriffe teilbar – Teiler – Vielfaches miteinander verbinden.'],
+});
+
+/* ============================ Kapitel 2 ============================ */
+CHAPTERS.push({
+  id: 'k2', nr: 2, title: 'Teiler und Vielfache bestimmen',
+  lead: 'Du findest alle Teiler einer Zahl und schreibst Vielfache auf – am besten mit System.',
+  wissen: `
+<h2>Das musst du wissen</h2>
+<h3>Teiler bestimmen</h3>
+<p>Suche Malaufgaben, die als Ergebnis deine Zahl haben. Die beiden Faktoren sind immer Teiler – man nennt sie ein <b>Teilerpaar</b>.</p>
+<div class="beispiel"><b>Teiler von 24</b><br>1 · 24 &nbsp; 2 · 12 &nbsp; 3 · 8 &nbsp; 4 · 6<br>→ Teiler: 1, 2, 3, 4, 6, 8, 12, 24<br>24 hat also <b>8 Teiler</b>.</div>
+<div class="merk">Prüfe der Reihe nach 1, 2, 3, 4, … Wenn du eine Zahl erreichst, die du schon als Partner gefunden hast, bist du fertig. <em>1 und die Zahl selbst sind immer Teiler.</em></div>
+<h3>Vielfache bestimmen</h3>
+<p>Vielfache entstehen, wenn du eine Zahl mit 1, 2, 3, … multiplizierst – das sind die Zahlen ihrer Einmaleins-Reihe.</p>
+<div class="beispiel"><b>Vielfache von 7</b><br>7 · 1 = 7, &nbsp; 7 · 2 = 14, &nbsp; 7 · 3 = 21, &nbsp; 7 · 4 = 28, &nbsp; 7 · 5 = 35, &nbsp; 7 · 6 = 42, …</div>
+<div class="merk">Eine Zahl hat <b>endlich viele Teiler</b>, aber <b>unendlich viele Vielfache</b>. <em>Jedes Vielfache ist mindestens so groß wie die Zahl selbst.</em></div>
+<p>Wenn du <b>gemeinsame Teiler</b> zweier Zahlen suchst, schreibst du zuerst die Teiler beider Zahlen auf. Gemeinsam sind die Zahlen, die in beiden Listen stehen.</p>`,
+  tool: { type: 'htafel' },
+  tasks: [
+    set(1, 'Schreibe <b>alle Teiler von 12</b> auf. Trenne die Zahlen mit Kommas.', divs(12),
+      ['Suche Malaufgaben mit dem Ergebnis 12: 1 · 12, 2 · 6, …', 'Denke an die 1 und an die Zahl selbst.'],
+      '1 · 12, 2 · 6 und 3 · 4 ergeben 12. Die Teiler von 12 sind 1, 2, 3, 4, 6 und 12.'),
+    set(1, 'Schreibe die <b>ersten fünf Vielfachen von 6</b> auf.', first(6, 5),
+      ['Nutze das 6er-Einmaleins.', 'Das erste Vielfache von 6 ist die 6 selbst.'],
+      '6 · 1 = 6, 6 · 2 = 12, 6 · 3 = 18, 6 · 4 = 24, 6 · 5 = 30.'),
+    mc(1, 'Welche Zahl ist ein <b>Teiler von 20</b>?', '4', ['3', '6', '8'],
+      ['Teile 20 durch die Zahl. Bleibt ein Rest?', 'Es gilt: 4 · 5 = 20.'],
+      '20 : 4 = 5 ohne Rest. Bei 3, 6 und 8 bleibt ein Rest (20 : 3 = 6 Rest 2, 20 : 6 = 3 Rest 2, 20 : 8 = 2 Rest 4).'),
+
+    set(2, 'Schreibe <b>alle Teiler von 30</b> auf.', divs(30),
+      ['Suche systematisch: 1 · 30, 2 · 15, 3 · 10, …', 'Prüfe auch 4 und 5. Wann kannst du aufhören?'],
+      '1 · 30, 2 · 15, 3 · 10, 5 · 6. Bei 4 bleibt ein Rest. Die Teiler sind 1, 2, 3, 5, 6, 10, 15 und 30 – das sind 8 Teiler.'),
+    set(2, 'Schreibe alle <b>Vielfachen von 9 zwischen 50 und 100</b> auf.', mults(9, 50, 100),
+      ['Das 9er-Einmaleins reicht nur bis 90. Mache weiter: 9 · 11 = 99.', 'Beginne bei 9 · 6.'],
+      '9 · 6 = 54, 9 · 7 = 63, 9 · 8 = 72, 9 · 9 = 81, 9 · 10 = 90, 9 · 11 = 99. Die nächste Zahl wäre 108 – die ist zu groß.'),
+    num(2, 'Wie viele Teiler hat die Zahl <b>36</b>?', divs(36).length,
+      ['Suche Teilerpaare: 1 · 36, 2 · 18, …', 'Bei 6 · 6 zählt die 6 nur einmal.'],
+      '1 · 36, 2 · 18, 3 · 12, 4 · 9, 6 · 6. Die Teiler sind 1, 2, 3, 4, 6, 9, 12, 18, 36. Das sind 9 Teiler.'),
+
+    set(3, 'Finde <b>alle gemeinsamen Teiler</b> von 18 und 24.', divs(18).filter(d => 24 % d === 0),
+      ['Schreibe erst alle Teiler von 18 und alle Teiler von 24 auf.', 'Gemeinsam heißt: Die Zahl steht in beiden Listen.'],
+      'Teiler von 18: 1, 2, 3, 6, 9, 18. Teiler von 24: 1, 2, 3, 4, 6, 8, 12, 24. In beiden Listen stehen 1, 2, 3 und 6.'),
+    num(3, 'Zahlenrätsel: Ich bin eine Zahl zwischen 40 und 60. <b>7 ist ein Teiler von mir</b> und ich bin ein <b>Vielfaches von 4</b>. Welche Zahl bin ich?', 56,
+      ['Schreibe die Vielfachen von 7 zwischen 40 und 60 auf.', 'Welche davon steht auch im 4er-Einmaleins?'],
+      'Vielfache von 7 zwischen 40 und 60: 42, 49, 56. Nur 56 = 4 · 14 ist auch ein Vielfaches von 4.'),
+    num(3, 'Welche Zahl <b>zwischen 20 und 30</b> hat die meisten Teiler?', 24,
+      ['24 und 28 sind gute Kandidaten. Schreibe ihre Teiler auf.', 'Vergleiche danach die Anzahl der Teiler mit den anderen Zahlen.'],
+      '24 hat 8 Teiler (1, 2, 3, 4, 6, 8, 12, 24), 28 hat 6 Teiler. 21, 22, 26 und 27 haben je 4 Teiler, 25 hat 3 Teiler, 23 und 29 haben nur 2. Also hat 24 die meisten.'),
+  ],
+  quiz: [
+    qz('Wie viele Teiler hat die Zahl 18?', '6', ['4', '5', '8'], '1 · 18, 2 · 9, 3 · 6 → 1, 2, 3, 6, 9, 18. Das sind 6 Teiler.'),
+    pick('Welche Zahl ist <b>kein</b> Teiler von 28?', n => 28 % n !== 0, [4, 7, 8, 14], '28 : 8 = 3 Rest 4. Die anderen Zahlen teilen 28 ohne Rest.'),
+    qz('Welche Zahl ist Teiler jeder Zahl?', '1', ['2', '10', 'Es gibt keine solche Zahl.'], 'Durch 1 kannst du jede Zahl ohne Rest teilen.'),
+    qz('Welche Reihe zeigt die ersten vier Vielfachen von 5?', '5, 10, 15, 20', ['5, 6, 7, 8', '5, 25, 45, 65', '10, 20, 30, 40'], 'Vielfache von 5 stehen im 5er-Einmaleins: 5, 10, 15, 20, …'),
+    qz('Wie viele Vielfache hat die Zahl 6?', 'unendlich viele', ['genau 6', 'genau 10', 'keine'], 'Du kannst 6 immer mit einer weiteren Zahl multiplizieren – die Reihe hört nie auf.'),
+  ],
+  kann: ['Ich kann die Teiler einer Zahl bestimmen.', 'Ich kann Vielfache einer Zahl angeben.', 'Ich kann gemeinsame Teiler von zwei Zahlen finden.'],
+});
+
+/* ============================ Kapitel 3 ============================ */
+CHAPTERS.push({
+  id: 'k3', nr: 3, title: 'Teilbarkeitsregeln für 2, 5 und 10',
+  lead: 'Nur die letzte Ziffer entscheidet – so erkennst du die Teilbarkeit in Sekunden, ohne zu rechnen.',
+  wissen: `
+<h2>Das musst du wissen</h2>
+<p>Bei diesen drei Zahlen musst du nur die <b>Endziffer</b> (Einerstelle) anschauen.</p>
+<div class="tscroll"><table>
+<tr><th>teilbar durch</th><th>Regel</th><th>Beispiel</th></tr>
+<tr><td><b>2</b></td><td>Die letzte Ziffer ist 0, 2, 4, 6 oder 8 (die Zahl ist gerade).</td><td>34<b>8</b> → teilbar durch 2</td></tr>
+<tr><td><b>5</b></td><td>Die letzte Ziffer ist 0 oder 5.</td><td>73<b>5</b> → teilbar durch 5</td></tr>
+<tr><td><b>10</b></td><td>Die letzte Ziffer ist 0.</td><td>4&nbsp;56<b>0</b> → teilbar durch 10</td></tr>
+</table></div>
+<div class="merk">Ist eine Zahl durch 10 teilbar, dann ist sie auch durch 2 und durch 5 teilbar. <em>Umgekehrt gilt: Eine Zahl, die durch 2 und durch 5 teilbar ist, ist durch 10 teilbar.</em></div>
+<h3>Warum zählt nur die letzte Ziffer?</h3>
+<p>Zehner, Hunderter, Tausender … sind alle Vielfache von 10. Sie sind also immer durch 2, 5 und 10 teilbar. Übrig bleibt nur die Einerstelle – und die entscheidet.</p>
+<div class="beispiel">735 = 700 + 30 + <b>5</b>. Die 700 und die 30 sind durch 5 teilbar. Die 5 auch. Also ist 735 durch 5 teilbar.</div>`,
+  tool: { type: 'regel', rules: [2, 5, 10] },
+  tasks: [
+    grid(1, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [120, 75, 88, 400, 91], [2, 5, 10],
+      ['Schau nur auf die letzte Ziffer.', 'Endet die Zahl auf 0, klappt es bei 2, 5 und 10 gleichzeitig.'],
+      'Nur die Endziffer zählt: 120 und 400 enden auf 0, 75 endet auf 5, 88 endet auf 8, 91 endet auf 1.'),
+    tf(1, 'Wahr oder falsch?', [tfN(348, 2), tfN(735, 2), tfN(735, 5), tfN(4560, 10), tfN(4565, 10)],
+      ['Die Endziffer verrät dir alles.', 'Gerade Endziffern: 0, 2, 4, 6, 8.'],
+      '348 endet auf 8 (gerade). 735 endet auf 5 (ungerade, aber durch 5 teilbar). 4 560 endet auf 0. 4 565 endet auf 5, nicht auf 0.'),
+    multi(1, 'Welche Zahlen sind durch <b>5</b> teilbar? (Es können mehrere sein.)',
+      [f(45), f(110), f(205)], [f(52), f(333), f(1004)],
+      ['Bei der Regel für 5 schaust du nur auf die Einerstelle.', 'Erlaubt sind nur die Endziffern 0 und 5.'],
+      '45, 110 und 205 enden auf 0 oder 5. Die Endziffern 2, 3 und 4 passen nicht.'),
+
+    set(2, `Für welche Ziffern <span class="box">□</span> ist 47<span class="box">□</span> durch 5 teilbar? Schreibe alle Möglichkeiten auf.`, [0, 5],
+      ['Welche Endziffern sind bei der Regel für 5 erlaubt?', 'Setze die Ziffern ein und prüfe: 470, 475.'],
+      'Die Endziffer muss 0 oder 5 sein. Es passen 470 und 475.', { ph: 'z. B. 1, 2' }),
+    num(2, 'Wie heißt die <b>größte dreistellige Zahl</b>, die durch <b>10</b> teilbar ist?', 990,
+      ['Die größte dreistellige Zahl ist 999. Passt sie?', 'Eine durch 10 teilbare Zahl endet auf 0.'],
+      '999, 998, … enden nicht auf 0. Die größte dreistellige Zahl mit der Endziffer 0 ist 990.'),
+    grid(2, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [1250, 3335, 2468, 7090, 5001], [2, 5, 10],
+      ['Bei großen Zahlen bleibt es gleich: Nur die Endziffer zählt.', 'Was gilt bei der Endziffer 0?'],
+      '1 250 und 7 090 enden auf 0 (2, 5, 10). 3 335 endet auf 5 (nur 5). 2 468 endet auf 8 (nur 2). 5 001 endet auf 1 (keine).'),
+
+    tf(3, 'Wahr oder falsch? Überlege dir jeweils ein Beispiel.',
+      [['Wenn eine Zahl durch 10 teilbar ist, dann ist sie auch durch 5 teilbar.', true], ['Wenn eine Zahl durch 5 teilbar ist, dann ist sie auch durch 10 teilbar.', false], ['Wenn eine Zahl durch 2 und durch 5 teilbar ist, dann ist sie durch 10 teilbar.', true], ['Eine Zahl, die auf 5 endet, ist gerade.', false]],
+      ['Suche Gegenbeispiele: 15, 25, 35 …', 'Welche Endziffern gehören zu 2 und zu 5? Welche steht in beiden Listen?'],
+      'Durch 10 teilbar heißt Endziffer 0 – das passt auch zu 5. Aber 15 ist durch 5, nicht durch 10 teilbar. Durch 2 und durch 5: gerade Endziffer und 0 oder 5 – nur die 0 passt zu beiden. Die Endziffer 5 ist ungerade.'),
+    set(3, `Für welche Ziffer <span class="box">□</span> ist 72<span class="box">□</span> <b>zugleich durch 2 und durch 5</b> teilbar?`, [0],
+      ['Die Endziffer muss zu beiden Regeln passen: gerade UND 0 oder 5.', 'Welche Ziffer steht in beiden Listen?'],
+      'Für 2: 0, 2, 4, 6, 8. Für 5: 0, 5. Nur die 0 steht in beiden Listen. 720 ist durch 2, 5 und 10 teilbar.', { ph: 'Ziffer' }),
+    mc(3, `Gibt es eine Ziffer <span class="box">□</span>, sodass 6<span class="box">□</span>3 durch 2 teilbar ist?`,
+      'Nein, denn die Zahl endet auf 3 – das ist eine ungerade Ziffer.',
+      ['Ja, wenn □ gerade ist.', 'Ja, wenn die Quersumme gerade ist.', 'Nein, denn dann müsste die Zahl auf 0 enden.'],
+      ['Welche Ziffer entscheidet bei der Regel für 2?', 'Kannst du die Endziffer 3 durch □ verändern?'],
+      'Die Regel für 2 schaut nur auf die Endziffer. Sie ist hier 3 und lässt sich durch □ nicht ändern. 6□3 ist also nie durch 2 teilbar.'),
+  ],
+  quiz: [
+    pick('Welche Zahl ist durch 5 teilbar?', n => n % 5 === 0, [1234, 2505, 3057, 4402], 'Nur 2 505 endet auf 5.'),
+    pick('Welche Zahl ist durch 2 <b>und</b> durch 5 teilbar?', n => n % 10 === 0, [125, 250, 52, 55], '250 endet auf 0 – das passt zu 2 und zu 5.'),
+    qz('Welche Endziffer muss eine Zahl haben, damit sie durch 10 teilbar ist?', '0', ['5', '0 oder 5', '2'], 'Durch 10 teilbar heißt: Die Zahl endet auf 0.'),
+    qz('Welche Aussage stimmt?', 'Jede durch 10 teilbare Zahl ist auch durch 5 teilbar.', ['Jede durch 5 teilbare Zahl ist durch 10 teilbar.', 'Jede ungerade Zahl ist durch 5 teilbar.', 'Jede gerade Zahl ist durch 10 teilbar.'], 'Endet eine Zahl auf 0, ist sie durch 10 und damit auch durch 5 teilbar. Umgekehrt stimmt es nicht: 15 ist durch 5 teilbar, aber nicht durch 10.'),
+    qz(`Für welche Ziffer □ ist 73□ durch 2 teilbar?`, '6', ['1', '3', '5'], 'Die Endziffer muss gerade sein. Von den angebotenen Ziffern ist nur die 6 gerade: 736.'),
+  ],
+  kann: ['Ich kenne die Teilbarkeitsregel für 2.', 'Ich kenne die Teilbarkeitsregel für 5.', 'Ich kenne die Teilbarkeitsregel für 10.', 'Ich kann feststellen, ob eine Zahl durch 2, 5 oder 10 teilbar ist, und meine Entscheidung mit der Regel begründen.'],
+});
+
+/* ============================ Kapitel 4 ============================ */
+CHAPTERS.push({
+  id: 'k4', nr: 4, title: 'Teilbarkeitsregeln für 4 und 8',
+  lead: 'Bei 4 und 8 schaust du auf mehr als eine Ziffer: auf die letzten zwei oder die letzten drei.',
+  wissen: `
+<h2>Das musst du wissen</h2>
+<div class="tscroll"><table>
+<tr><th>teilbar durch</th><th>Regel</th><th>Beispiel</th></tr>
+<tr><td><b>4</b></td><td>Die <b>letzten zwei Ziffern</b> bilden eine Zahl, die durch 4 teilbar ist.</td><td>1&nbsp;3<b>24</b> → 24 : 4 = 6 ✓<br>1&nbsp;3<b>26</b> → 26 : 4 = 6 Rest 2 ✗</td></tr>
+<tr><td><b>8</b></td><td>Die <b>letzten drei Ziffern</b> bilden eine Zahl, die durch 8 teilbar ist.</td><td>2&nbsp;<b>184</b> → 184 : 8 = 23 ✓</td></tr>
+</table></div>
+<h3>Warum funktioniert das?</h3>
+<p>100 ist durch 4 teilbar (4 · 25 = 100), also auch alle Hunderter, Tausender … Deshalb zählen nur Zehner und Einer. Ebenso ist 1&nbsp;000 durch 8 teilbar (8 · 125 = 1&nbsp;000), deshalb zählen nur die letzten drei Ziffern.</p>
+<div class="merk">Endet eine Zahl auf <b>00</b>, ist sie durch 4 teilbar. Endet sie auf <b>000</b>, ist sie durch 8 teilbar.</div>
+<h3>Der Halbier-Trick</h3>
+<p>4 = 2 · 2 und 8 = 2 · 2 · 2. Du kannst also halbieren: Bleibt die Zahl <b>zweimal</b> hintereinander ganz, ist sie durch 4 teilbar. Bleibt sie <b>dreimal</b> ganz, ist sie durch 8 teilbar.</p>
+<div class="beispiel">316 → 158 → 79 (zweimal halbiert) → durch 4 teilbar.<br>2&nbsp;184 → 1&nbsp;092 → 546 → 273 (dreimal halbiert) → durch 8 teilbar.</div>
+<div class="merk">Durch 8 teilbar → auch durch 4 teilbar → auch durch 2 teilbar. <em>Umgekehrt nicht: 12 ist durch 4 teilbar, aber nicht durch 8.</em></div>`,
+  tool: { type: 'regel', rules: [4, 8] },
+  tasks: [
+    mc(1, 'Ist 1 324 durch 4 teilbar? Welche Zahl musst du für die Regel prüfen?',
+      '24 (die letzten zwei Ziffern)',
+      ['4 (die letzte Ziffer)', '324 (die letzten drei Ziffern)', '1 (die erste Ziffer)'],
+      ['Für die Regel 4 zählen die Zehner- und die Einerstelle.', 'Rechne danach: 24 : 4 = ?'],
+      '1 324 → letzte zwei Ziffern: 24. 24 : 4 = 6 ohne Rest. Also ist 1 324 durch 4 teilbar.'),
+    tf(1, 'Wahr oder falsch?', [tfN(716, 4), tfN(1234, 4), tfN(5500, 4), tfN(3018, 4)],
+      ['Schau nur auf die letzten beiden Ziffern.', 'Bei 5 500 sind die letzten zwei Ziffern 00. Was gilt dann?'],
+      '716 → 16 : 4 = 4 ✓. 1 234 → 34 : 4 = 8 Rest 2. 5 500 → 00 ist durch 4 teilbar ✓. 3 018 → 18 : 4 = 4 Rest 2.'),
+    grid(1, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [36, 50, 72, 94, 128], [2, 4],
+      ['Bei zweistelligen Zahlen prüfst du die ganze Zahl.', 'Erst 2, dann 4: Was nicht durch 2 teilbar ist, ist auch nicht durch 4 teilbar.'],
+      '36 : 4 = 9 ✓, 50 : 4 = 12 Rest 2, 72 : 4 = 18 ✓, 94 : 4 = 23 Rest 2, 128 → 28 : 4 = 7 ✓. Alle fünf Zahlen sind gerade.'),
+
+    grid(2, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [216, 1124, 3048, 2350, 6400], [4, 8],
+      ['Für 4: letzte zwei Ziffern. Für 8: letzte drei Ziffern.', 'Prüfe zuerst 4. Was nicht durch 4 teilbar ist, ist auch nicht durch 8 teilbar.'],
+      '216: 16 : 4 = 4 ✓, 216 : 8 = 27 ✓. 1 124: 24 : 4 = 6 ✓, 124 : 8 = 15 Rest 4. 3 048: 48 : 4 = 12 ✓, 048 : 8 = 6 ✓. 2 350: 50 : 4 = 12 Rest 2. 6 400: 00 ✓, 400 : 8 = 50 ✓.'),
+    set(2, `Für welche Ziffern <span class="box">□</span> ist 51<span class="box">□</span> durch 4 teilbar?`, [2, 6],
+      ['Die letzten zwei Ziffern sind 1□. Probiere 10, 11, 12, …, 19.', 'Nur gerade Zahlen kommen in Frage.'],
+      'Von 10 bis 19 sind 12 (= 4 · 3) und 16 (= 4 · 4) durch 4 teilbar. Also 512 und 516.', { ph: 'z. B. 1, 4' }),
+    set(2, `Für welche Ziffern <span class="box">□</span> ist 72<span class="box">□</span> durch 8 teilbar?`, [0, 8],
+      ['Für 8 zählen die letzten drei Ziffern – hier die ganze Zahl 72□.', 'Probiere 720 : 8, 722 : 8, 724 : 8, … Nur gerade Endziffern kommen in Frage.'],
+      '720 : 8 = 90 ✓ und 728 : 8 = 91 ✓. Bei 722, 724 und 726 bleibt ein Rest.', { ph: 'z. B. 1, 4' }),
+
+    set(3, `Für welche Ziffern <span class="box">□</span> ist 2<span class="box">□</span>8 durch 4 teilbar?`, [0, 2, 4, 6, 8],
+      ['Es zählen die letzten zwei Ziffern: □8.', 'Probiere 08, 18, 28, 38, … Welche sind durch 4 teilbar?'],
+      '08, 28, 48, 68 und 88 sind durch 4 teilbar; 18, 38, 58, 78 und 98 nicht. Du erkennst: Die Zehnerziffer muss gerade sein.', { ph: 'z. B. 1, 3, 5' }),
+    tf(3, 'Wahr oder falsch? Überlege mit Beispielen.',
+      [['Wenn eine Zahl durch 8 teilbar ist, dann ist sie auch durch 4 teilbar.', true], ['Wenn eine Zahl durch 4 teilbar ist, dann ist sie auch durch 8 teilbar.', false], ['Jede Zahl, die auf 000 endet, ist durch 8 teilbar.', true], ['Jede durch 4 teilbare Zahl ist gerade.', true], ['Jede gerade Zahl ist durch 4 teilbar.', false]],
+      ['Gegenbeispiele findest du bei 12 und 6.', '8 = 2 · 4. Was bedeutet das für Vielfache von 8?'],
+      'Vielfache von 8 sind immer auch Vielfache von 4 (8 = 2 · 4). 12 ist durch 4, aber nicht durch 8 teilbar. 1 000 = 8 · 125, deshalb sind alle Zahlen, die auf 000 enden, durch 8 teilbar. 4 = 2 · 2, also ist jede durch 4 teilbare Zahl gerade. 6 ist gerade, aber nicht durch 4 teilbar.'),
+    num(3, 'Wie heißt die <b>größte dreistellige Zahl</b>, die durch <b>8</b> teilbar ist?', 992,
+      ['Bei dreistelligen Zahlen musst du die ganze Zahl prüfen.', 'Rechne 1 000 : 8. Was folgt daraus für die Zahl davor?'],
+      '1 000 : 8 = 125, also ist 1 000 durch 8 teilbar. Die vorherige durch 8 teilbare Zahl ist 1 000 − 8 = 992 (= 8 · 124).'),
+  ],
+  quiz: [
+    qz('Welche Ziffern prüfst du bei der Regel für 4?', 'die letzten zwei Ziffern', ['nur die letzte Ziffer', 'die letzten drei Ziffern', 'die Quersumme'], 'Bei 4 zählen Zehner und Einer.'),
+    pick('Welche Zahl ist durch 4 teilbar?', n => n % 4 === 0, [1226, 3418, 5212, 7106], '5 212 endet auf 12, und 12 : 4 = 3. Bei 26, 18 und 06 bleibt ein Rest.'),
+    pick('Welche Zahl ist durch 8 teilbar?', n => n % 8 === 0, [1116, 2344, 3250, 4004], '2 344 endet auf 344, und 344 : 8 = 43.'),
+    qz('Eine Zahl ist durch 8 teilbar. Was gilt dann sicher?', 'Sie ist auch durch 4 teilbar.', ['Sie ist auch durch 16 teilbar.', 'Sie ist auch durch 10 teilbar.', 'Sie ist auch durch 3 teilbar.'], '8 = 2 · 4, deshalb ist jedes Vielfache von 8 auch ein Vielfaches von 4.'),
+    pick('Welche Zahl ist durch 4, aber <b>nicht</b> durch 8 teilbar?', n => n % 4 === 0 && n % 8 !== 0, [216, 124, 400, 1000], '124 : 4 = 31, aber 124 : 8 = 15 Rest 4.'),
+  ],
+  kann: ['Ich kenne die Teilbarkeitsregel für 4.', 'Ich kenne die Teilbarkeitsregel für 8.', 'Ich kann den Halbier-Trick für 4 und 8 anwenden.', 'Ich kann fehlende Ziffern so bestimmen, dass eine Zahl durch 4 oder 8 teilbar ist.'],
+});
+
+/* ============================ Kapitel 5 ============================ */
+CHAPTERS.push({
+  id: 'k5', nr: 5, title: 'Teilbarkeitsregeln für 3 und 9',
+  lead: 'Hier hilft dir nicht die Endziffer, sondern die Quersumme.',
+  wissen: `
+<h2>Das musst du wissen</h2>
+<p>Die <b>Quersumme</b> einer Zahl ist die Summe aller ihrer Ziffern.</p>
+<div class="beispiel">Quersumme von 372: 3 + 7 + 2 = <b>12</b></div>
+<div class="tscroll"><table>
+<tr><th>teilbar durch</th><th>Regel</th><th>Beispiel</th></tr>
+<tr><td><b>3</b></td><td>Die Quersumme ist durch 3 teilbar.</td><td>372 → 3 + 7 + 2 = 12 → 12 ist durch 3 teilbar ✓</td></tr>
+<tr><td><b>9</b></td><td>Die Quersumme ist durch 9 teilbar.</td><td>729 → 7 + 2 + 9 = 18 → 18 ist durch 9 teilbar ✓</td></tr>
+</table></div>
+<div class="beispiel">372 hat die Quersumme 12. 12 ist durch 3 teilbar, aber <b>nicht</b> durch 9. Also: 372 ist durch 3 teilbar, aber nicht durch 9.</div>
+<div class="merk">Durch 9 teilbar → auch durch 3 teilbar (9 = 3 · 3). <em>Umgekehrt nicht: 12 ist durch 3 teilbar, aber nicht durch 9.</em></div>
+<div class="warn"><b>Achtung:</b> Bei 3 und 9 sagt die Endziffer nichts aus. Auch gerade Zahlen und Zahlen auf 5 können durch 3 teilbar sein – oder eben nicht. Und wenn du Ziffern vertauschst, bleibt die Quersumme gleich.</div>
+<h3>Warum funktioniert das?</h3>
+<p>Zehner, Hunderter, Tausender … lassen bei der Division durch 3 und durch 9 immer den Rest 1 (10 = 9 + 1, 100 = 99 + 1, …). Deshalb zählt jede Ziffer nur einmal, und du darfst einfach die Ziffern addieren.</p>`,
+  tool: { type: 'regel', rules: [3, 9] },
+  tasks: [
+    num(1, 'Berechne die <b>Quersumme</b> von 4&nbsp;638.', 21,
+      ['Addiere alle Ziffern: 4 + 6 + …', 'Rechne in Schritten: 4 + 6 = 10, dann + 3, dann + 8.'],
+      '4 + 6 + 3 + 8 = 21.'),
+    grid(1, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [45, 52, 63, 84, 90], [3, 9],
+      ['Bilde für jede Zahl die Quersumme.', 'Bei 84 kommt 12 heraus: 12 ist durch 3, aber nicht durch 9 teilbar.'],
+      '45 → 9, 52 → 7, 63 → 9, 84 → 12, 90 → 9. Quersumme 9: durch 3 und 9. Quersumme 12: nur durch 3. Quersumme 7: durch keine von beiden.'),
+    tf(1, 'Wahr oder falsch?', [tfN(231, 3), tfN(412, 3), tfN(621, 9), tfN(532, 9)],
+      ['Bilde die Quersumme und prüfe, ob sie durch 3 bzw. 9 teilbar ist.', '3 + 2 + 1 = ?'],
+      '231 → 6 ✓. 412 → 7 (nicht durch 3). 621 → 9 ✓. 532 → 10 (nicht durch 9).'),
+
+    grid(2, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [729, 1458, 2301, 4105, 8991], [3, 9],
+      ['Berechne die Quersumme jeder Zahl.', 'Quersumme 18 oder 27: durch 9 teilbar.'],
+      '729 → 18, 1 458 → 18, 2 301 → 6, 4 105 → 10, 8 991 → 27. Durch 3 und 9: 729, 1 458, 8 991. Nur durch 3: 2 301. Durch keine: 4 105.'),
+    set(2, `Für welche Ziffern <span class="box">□</span> ist 35<span class="box">□</span> durch 3 teilbar?`, [1, 4, 7],
+      ['Die Quersumme ist 3 + 5 + □ = 8 + □.', 'Welche Zahlen aus 8, 9, 10, …, 17 sind durch 3 teilbar?'],
+      '8 + □ muss 9, 12 oder 15 sein. Also □ = 1, 4 oder 7: 351, 354, 357.', { ph: 'z. B. 1, 4' }),
+    set(2, `Für welche Ziffern <span class="box">□</span> ist 2<span class="box">□</span>7 durch 9 teilbar?`, [0, 9],
+      ['Quersumme: 2 + □ + 7 = 9 + □.', 'Die Quersumme muss 9 oder 18 sein.'],
+      '9 + □ muss durch 9 teilbar sein: 9 + 0 = 9 und 9 + 9 = 18. Also □ = 0 oder 9: 207 und 297.', { ph: 'z. B. 1, 4' }),
+
+    set(3, `Für welche Ziffern <span class="box">□</span> ist 64<span class="box">□</span> durch 3, aber <b>nicht</b> durch 9 teilbar?`, [2, 5],
+      ['Quersumme: 6 + 4 + □ = 10 + □.', 'Welche Quersummen sind durch 3, aber nicht durch 9 teilbar? (12, 15 oder 18?)'],
+      '10 + □ kann 12, 15 oder 18 sein (□ = 2, 5, 8). 12 und 15 sind durch 3, aber nicht durch 9 teilbar. 18 ist durch 9 teilbar – also passt □ = 8 nicht. Lösung: □ = 2 oder 5 (642 und 645).', { ph: 'z. B. 1, 4' }),
+    tf(3, 'Wahr oder falsch? Begründe im Kopf mit Beispielen.',
+      [['Wenn eine Zahl durch 9 teilbar ist, dann ist sie auch durch 3 teilbar.', true], ['Wenn eine Zahl durch 3 teilbar ist, dann ist sie auch durch 9 teilbar.', false], ['Wenn man die Ziffern einer Zahl vertauscht, ändert sich die Teilbarkeit durch 3 nicht.', true], ['Eine Zahl mit der Quersumme 27 ist durch 9 teilbar.', true]],
+      ['Suche für „durch 3 teilbar → durch 9 teilbar“ ein Gegenbeispiel (Quersumme 12?).', 'Was passiert mit der Quersumme, wenn du Ziffern vertauschst?'],
+      '9 = 3 · 3: Jede durch 9 teilbare Zahl ist auch durch 3 teilbar. Gegenbeispiel: 12 ist durch 3, aber nicht durch 9 teilbar. Beim Vertauschen bleibt die Quersumme gleich – also auch die Teilbarkeit durch 3. 27 : 9 = 3, also ist Quersumme 27 durch 9 teilbar.'),
+    open(3, 'Lena sagt: „4&nbsp;218 ist durch 3 teilbar, weil die Zahl auf 8 endet und 8 gerade ist.“ Die Zahl ist tatsächlich durch 3 teilbar. Aber stimmt Lenas <b>Begründung</b>? Erkläre.',
+      ['Welche Regel gehört zur Endziffer? Und welche Regel gehört zu 3?', 'Berechne die Quersumme von 4 218.'],
+      'Die Begründung stimmt nicht. Die gerade Endziffer 8 sagt nur etwas über die Teilbarkeit durch 2. Für 3 braucht man die Quersumme: 4 + 2 + 1 + 8 = 15, und 15 ist durch 3 teilbar. Deshalb ist 4 218 durch 3 teilbar.',
+      ['Ich habe erklärt, dass die Endziffer für 3 keine Rolle spielt.', 'Ich habe die Quersumme 15 berechnet.', 'Ich habe geschrieben, warum 4 218 durch 3 teilbar ist.']),
+  ],
+  quiz: [
+    qz('Wie groß ist die Quersumme von 5&nbsp;407?', '16', ['12', '19', '22'], '5 + 4 + 0 + 7 = 16.'),
+    pick('Welche Zahl ist durch 3 teilbar?', n => n % 3 === 0, [1232, 2451, 3502, 4175], '2 451 → 2 + 4 + 5 + 1 = 12, und 12 ist durch 3 teilbar.'),
+    pick('Welche Zahl ist durch 9 teilbar?', n => n % 9 === 0, [2358, 4123, 6501, 7312], '2 358 → 2 + 3 + 5 + 8 = 18, und 18 ist durch 9 teilbar. 6 501 hat die Quersumme 12 – das reicht nur für 3.'),
+    qz('Eine Zahl ist durch 9 teilbar. Was gilt dann sicher?', 'Sie ist auch durch 3 teilbar.', ['Sie ist auch durch 6 teilbar.', 'Sie ist auch durch 18 teilbar.', 'Sie ist gerade.'], '9 = 3 · 3, also ist jedes Vielfache von 9 auch ein Vielfaches von 3. 18 und 27 zeigen, dass die anderen Aussagen nicht immer stimmen.'),
+    qz('Für welche Ziffer □ ist 4□1 durch 3 teilbar?', '1', ['2', '3', '5'], 'Die Quersumme ist 4 + □ + 1 = 5 + □. Mit □ = 1 ergibt das 6 – durch 3 teilbar: 411.'),
+  ],
+  kann: ['Ich kann die Quersumme einer Zahl bestimmen.', 'Ich kenne die Teilbarkeitsregel für 3 und kann die Quersumme verwenden.', 'Ich kenne die Teilbarkeitsregel für 9.', 'Ich kann fehlende Ziffern so bestimmen, dass eine Zahl durch 3 oder 9 teilbar ist.'],
+});
+
+/* ============================ Kapitel 6 ============================ */
+CHAPTERS.push({
+  id: 'k6', nr: 6, title: 'Die Regel für 6 und Regeln kombinieren',
+  lead: 'Aus zwei Regeln wird eine neue: Du lernst, Teilbarkeitsregeln zu kombinieren – und wo man aufpassen muss.',
+  wissen: `
+<h2>Das musst du wissen</h2>
+<div class="merk">Eine Zahl ist durch <b>6</b> teilbar, wenn sie durch <b>2</b> und durch <b>3</b> teilbar ist. <em>Denn 6 = 2 · 3.</em></div>
+<div class="beispiel"><b>Ist 342 durch 6 teilbar?</b><br>342 ist gerade (Endziffer 2) → durch 2 teilbar ✓<br>Quersumme 3 + 4 + 2 = 9 → durch 3 teilbar ✓<br>Also ist 342 durch 6 teilbar.</div>
+<div class="beispiel"><b>Ist 1&nbsp;248 durch 6 teilbar?</b><br>gerade ✓ · Quersumme 1 + 2 + 4 + 8 = 15, durch 3 teilbar ✓ → ja.</div>
+<h3>Regeln kombinieren</h3>
+<p>Für viele Zahlen kannst du neue Regeln aus bekannten bauen. Du zerlegst die Zahl in zwei Faktoren und prüfst beide Regeln.</p>
+<div class="tscroll"><table>
+<tr><th>teilbar durch</th><th>weil …</th><th>du prüfst</th></tr>
+<tr><td><b>6</b></td><td>6 = 2 · 3</td><td>Endziffer und Quersumme</td></tr>
+<tr><td><b>12</b></td><td>12 = 3 · 4</td><td>Quersumme und letzte zwei Ziffern</td></tr>
+<tr><td><b>15</b></td><td>15 = 3 · 5</td><td>Quersumme und Endziffer</td></tr>
+<tr><td><b>18</b></td><td>18 = 2 · 9</td><td>Endziffer und Quersumme</td></tr>
+<tr><td><b>24</b></td><td>24 = 3 · 8</td><td>Quersumme und letzte drei Ziffern</td></tr>
+<tr><td><b>30</b></td><td>30 = 3 · 10</td><td>Quersumme und Endziffer</td></tr>
+</table></div>
+<div class="warn"><b>Achtung:</b> Das klappt nur, wenn die beiden Faktoren <b>keinen gemeinsamen Teiler außer 1</b> haben. 12 ist durch 4 und durch 6 teilbar – aber nicht durch 24 (4 · 6). Denn 4 und 6 haben beide den Teiler 2. Darum zerlegt man 24 besser in 3 · 8.</div>`,
+  tool: { type: 'regel', rules: [6, 12, 15, 18, 24, 30] },
+  tasks: [
+    grid(1, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [36, 40, 51, 72, 85], [2, 3, 6],
+      ['Prüfe erst 2, dann 3. Nur wenn beides klappt, klappt auch 6.', 'Für 3 brauchst du die Quersumme.'],
+      '36 und 72: gerade, Quersumme 9 → durch 2, 3 und 6. 40: gerade, aber Quersumme 4 → nur durch 2. 51: Quersumme 6, aber ungerade → nur durch 3. 85: weder noch.'),
+    mc(1, 'Für die Teilbarkeit durch 6 prüfst du, ob die Zahl durch … teilbar ist.',
+      '2 und durch 3', ['2 oder durch 3', '6 und durch 1', '3 und durch 9'],
+      ['6 lässt sich als Malaufgabe schreiben.', '6 = 2 · 3'],
+      'Weil 6 = 2 · 3, muss die Zahl durch 2 und durch 3 teilbar sein – beide Bedingungen müssen gleichzeitig erfüllt sein.'),
+    tf(1, 'Wahr oder falsch?', [tfN(54, 6), tfN(45, 6), tfN(62, 6), tfN(90, 6)],
+      ['Prüfe: gerade? Quersumme durch 3 teilbar?', '45 ist ungerade – was bedeutet das für 6?'],
+      '54: gerade, Quersumme 9 ✓. 45: ungerade. 62: gerade, aber Quersumme 8. 90: gerade, Quersumme 9 ✓.'),
+
+    grid(2, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [342, 1248, 2154, 3705, 5274], [2, 3, 6, 9],
+      ['Bilde für jede Zahl die Quersumme und prüfe die Endziffer.', '6 klappt, wenn 2 und 3 gleichzeitig klappen.'],
+      '342: Quersumme 9 → 2, 3, 6, 9. 1 248: Quersumme 15 → 2, 3, 6. 2 154: Quersumme 12 → 2, 3, 6. 3 705: ungerade, Quersumme 15 → nur 3. 5 274: Quersumme 18 → 2, 3, 6, 9.'),
+    set(2, `Für welche Ziffern <span class="box">□</span> ist 24<span class="box">□</span> durch 6 teilbar?`, [0, 6],
+      ['Die Zahl muss gerade sein: Welche Endziffern kommen in Frage?', 'Prüfe von diesen Ziffern die Quersumme 2 + 4 + □.'],
+      'Für 2: □ ∈ {0, 2, 4, 6, 8}. Für 3 muss 6 + □ durch 3 teilbar sein: □ ∈ {0, 3, 6, 9}. In beiden Listen: 0 und 6. Also 240 und 246.', { ph: 'z. B. 1, 4' }),
+    num(2, 'Wie heißt die <b>kleinste dreistellige Zahl</b>, die durch <b>6</b> teilbar ist?', 102,
+      ['Die Zahl muss gerade sein und eine Quersumme haben, die durch 3 teilbar ist.', 'Probiere 100, 101, 102, …'],
+      '100: Quersumme 1 ✗. 101: ungerade ✗. 102: gerade, Quersumme 3 ✓. Also 102 = 6 · 17.'),
+
+    tf(3, 'Wahr oder falsch? Suche bei „falsch“ ein Gegenbeispiel.',
+      [['Wenn eine Zahl durch 4 und durch 6 teilbar ist, dann ist sie durch 24 teilbar.', false], ['Wenn eine Zahl durch 3 und durch 5 teilbar ist, dann ist sie durch 15 teilbar.', true], ['Wenn eine Zahl durch 2 und durch 9 teilbar ist, dann ist sie durch 18 teilbar.', true], ['Wenn eine Zahl durch 6 teilbar ist, dann ist sie auch durch 3 teilbar.', true], ['Wenn eine Zahl durch 6 und durch 9 teilbar ist, dann ist sie durch 54 teilbar.', false]],
+      ['Gegenbeispiele: 12 (bei 4 und 6) und 18 (bei 6 und 9).', 'Faktoren ohne gemeinsamen Teiler (3 und 5; 2 und 9) darf man kombinieren.'],
+      '12 ist durch 4 und 6 teilbar, aber nicht durch 24. 18 ist durch 6 und 9 teilbar, aber nicht durch 54. Bei 3 und 5 sowie 2 und 9 gibt es keinen gemeinsamen Teiler außer 1 – dort geht die Kombination. 6 = 2 · 3, deshalb ist jedes Vielfache von 6 auch ein Vielfaches von 3.'),
+    set(3, `Für welche Ziffern <span class="box">□</span> ist 3<span class="box">□</span>6 durch <b>12</b> teilbar? (Tipp: 12 = 3 · 4)`, [3, 9],
+      ['Prüfe erst die Regel für 4, dann die Regel für 3.', 'Für 4: letzte zwei Ziffern □6. Für 3: Quersumme 3 + □ + 6.'],
+      'Regel 4: □6 muss durch 4 teilbar sein: 16, 36, 56, 76, 96 → □ ∈ {1, 3, 5, 7, 9}. Regel 3: 9 + □ muss durch 3 teilbar sein: □ ∈ {0, 3, 6, 9}. In beiden Listen: 3 und 9. Also 336 = 12 · 28 und 396 = 12 · 33.', { ph: 'z. B. 1, 4' }),
+    num(3, 'Wie heißt die <b>kleinste Zahl</b>, die durch <b>4 und durch 6</b> teilbar ist? Ist sie auch durch 24 teilbar? Überlege – und trage die Zahl ein.', 12,
+      ['Schreibe Vielfache von 6 auf: 6, 12, 18, … Welches steht auch im 4er-Einmaleins?', 'Prüfe, ob diese Zahl durch 24 teilbar ist.'],
+      'Vielfache von 6: 6, 12, … 12 = 4 · 3 ist die erste, die auch durch 4 teilbar ist. Sie ist nicht durch 24 teilbar. Darum darf man 4 und 6 nicht zu 24 kombinieren: Beide haben den gemeinsamen Teiler 2.'),
+  ],
+  quiz: [
+    qz('Welche Regel gilt für die Teilbarkeit durch 6?', 'Die Zahl ist durch 2 und durch 3 teilbar.', ['Die Endziffer ist 6.', 'Die Quersumme ist durch 6 teilbar.', 'Die Endziffer ist 0 oder 6.'], '6 = 2 · 3: Es müssen beide Regeln erfüllt sein.'),
+    pick('Welche Zahl ist durch 6 teilbar?', n => n % 6 === 0, [234, 235, 236, 238], '234 ist gerade, Quersumme 9 ist durch 3 teilbar.'),
+    pick('Welche Zahl ist durch 3, aber <b>nicht</b> durch 6 teilbar?', n => n % 3 === 0 && n % 6 !== 0, [27, 48, 54, 66], '27 hat die Quersumme 9, ist aber ungerade.'),
+    qz('Für welche Ziffer □ ist 5□2 durch 6 teilbar?', '2', ['3', '4', '6'], 'Die Endziffer 2 ist gerade. Quersumme: 5 + □ + 2 = 7 + □. Mit □ = 2 ist die Quersumme 9: 522 ist durch 6 teilbar.'),
+    pick('Welche Zahl ist durch 2, 3 <b>und</b> 5 teilbar?', n => n % 30 === 0, [15, 20, 30, 45], '30 endet auf 0 (durch 2 und 5) und hat die Quersumme 3.'),
+  ],
+  kann: ['Ich kenne die Teilbarkeitsregel für 6.', 'Ich kann mehrere Teilbarkeitsregeln miteinander kombinieren.', 'Ich weiß, worauf ich beim Kombinieren achten muss (kein gemeinsamer Teiler).'],
+});
+
+/* ============================ Kapitel 7 ============================ */
+CHAPTERS.push({
+  id: 'k7', nr: 7, title: 'Alle Regeln anwenden und begründen',
+  lead: 'Jetzt bringst du alles zusammen: Regeln auswählen, Zahlen prüfen, Ziffern ergänzen und sauber begründen.',
+  wissen: `
+<h2>Das musst du wissen</h2>
+<div class="tscroll"><table>
+<tr><th>teilbar durch</th><th>Regel</th><th>Beispiel</th></tr>
+<tr><td><b>2</b></td><td>Endziffer 0, 2, 4, 6 oder 8</td><td>348</td></tr>
+<tr><td><b>3</b></td><td>Quersumme durch 3 teilbar</td><td>372 → 12</td></tr>
+<tr><td><b>4</b></td><td>letzte zwei Ziffern durch 4 teilbar</td><td>1&nbsp;324 → 24</td></tr>
+<tr><td><b>5</b></td><td>Endziffer 0 oder 5</td><td>735</td></tr>
+<tr><td><b>6</b></td><td>durch 2 und durch 3 teilbar</td><td>342</td></tr>
+<tr><td><b>8</b></td><td>letzte drei Ziffern durch 8 teilbar</td><td>2&nbsp;184 → 184</td></tr>
+<tr><td><b>9</b></td><td>Quersumme durch 9 teilbar</td><td>729 → 18</td></tr>
+<tr><td><b>10</b></td><td>Endziffer 0</td><td>4&nbsp;560</td></tr>
+</table></div>
+<h3>So gehst du vor</h3>
+<div class="beispiel">1. Welche Regel gehört zur Zahl? (Endziffer, letzte Ziffern, Quersumme oder Kombination?)<br>2. Wende die Regel an – ohne die Zahl schriftlich zu teilen.<br>3. Schreibe dein Ergebnis mit einer Begründung auf.</div>
+<h3>So begründest du</h3>
+<div class="beispiel">„1&nbsp;248 ist durch 6 teilbar, weil 1&nbsp;248 gerade ist und die Quersumme 15 durch 3 teilbar ist. Also ist die Zahl durch 2 und durch 3 teilbar.“<br>„2&nbsp;634 ist nicht durch 4 teilbar, denn 34 : 4 = 8 Rest 2.“</div>
+<div class="merk">Zusammenhänge: durch 8 teilbar → durch 4 → durch 2. &nbsp;Durch 9 teilbar → durch 3. &nbsp;Durch 10 teilbar → durch 2 und durch 5. &nbsp;Durch 6 teilbar → durch 2 und durch 3.</div>
+<p>Auch die Fachbegriffe gehören dazu: Wenn 6 ein <b>Teiler</b> von 342 ist, dann ist 342 ein <b>Vielfaches</b> von 6 und 342 ist durch 6 <b>teilbar</b>.</p>`,
+  tool: { type: 'regel', rules: [2, 3, 4, 5, 6, 8, 9, 10] },
+  tasks: [
+    grid(1, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [120, 135, 216], [2, 3, 4, 5, 6, 8, 9, 10],
+      ['Gehe die Regeln nacheinander durch: erst Endziffer, dann letzte Ziffern, dann Quersumme.', 'Was du bei 6 brauchst, hast du bei 2 und 3 schon geprüft.'],
+      '120: Endziffer 0, Quersumme 3, 20 durch 4 ✓, 120 : 8 = 15 ✓. 135: Quersumme 9 (3 und 9), Endziffer 5. 216: gerade, Quersumme 9, 16 durch 4 ✓, 216 : 8 = 27 ✓.'),
+    mc(1, 'Welche Zahl ist durch 3 <b>und</b> durch 5 teilbar?', '45', ['25', '27', '52'],
+      ['Für 5 zählt die Endziffer, für 3 die Quersumme.', 'Welche Zahlen enden auf 0 oder 5?'],
+      '45 endet auf 5 (durch 5 teilbar), die Quersumme 4 + 5 = 9 ist durch 3 teilbar. 25 hat die Quersumme 7, 27 endet auf 7, 52 endet auf 2.'),
+    multi(1, 'Welche Zahlen sind durch <b>9</b> teilbar? (Es können mehrere sein.)', ['81', '99', '108'], ['91', '190', f(1001)],
+      ['Berechne die Quersumme jeder Zahl.', 'Die Quersumme muss 9 oder 18 sein.'],
+      '81 → 9, 99 → 18, 108 → 9. 91 → 10, 190 → 10, 1 001 → 2.'),
+
+    set(2, `Für welche Ziffer <span class="box">□</span> ist 5<span class="box">□</span>0 durch 9 teilbar?`, [4],
+      ['Für 9 brauchst du die Quersumme: 5 + □ + 0.', 'Die Quersumme muss 9 sein (18 ist mit einer Ziffer nicht zu erreichen).'],
+      '5 + □ muss durch 9 teilbar sein. Mit einer Ziffer geht nur 5 + 4 = 9. Also 540 = 9 · 60.', { ph: 'Ziffer' }),
+    grid(2, 'Kreuze an, wenn die Zahl durch die Zahl oben teilbar ist.', [3240, 1512, 7305, 4986], [2, 3, 4, 5, 6, 8, 9, 10],
+      ['Bilde erst die Quersumme, dann prüfe die letzten Ziffern.', 'Bei 8 zählen die letzten drei Ziffern.'],
+      '3 240: Quersumme 9, Endziffer 0, 40 ✓, 240 : 8 = 30 ✓ (alle acht). 1 512: Quersumme 9, 12 ✓, 512 : 8 = 64 ✓ (nicht 5 und 10). 7 305: Quersumme 15, Endziffer 5 (nur 3 und 5). 4 986: Quersumme 27, gerade, aber 86 nicht durch 4.'),
+    num(2, 'Wie viele Zahlen <b>zwischen 100 und 150</b> sind durch <b>9</b> teilbar?', 5,
+      ['Finde die erste durch 9 teilbare Zahl nach 100. Die Quersumme muss 9 oder 18 sein.', 'Danach geht es immer in 9er-Schritten weiter.'],
+      '108, 117, 126, 135, 144 – das sind 5 Zahlen. Die nächste wäre 153 und liegt außerhalb.'),
+
+    tf(3, 'Wahr oder falsch? Suche bei „falsch“ ein Gegenbeispiel.',
+      [['Wenn eine Zahl durch 6 und durch 8 teilbar ist, dann ist sie durch 48 teilbar.', false], ['Jede Zahl mit der Quersumme 12 ist durch 6 teilbar.', false], ['Jede durch 9 teilbare Zahl ist auch durch 3 teilbar.', true], ['Eine Zahl, die auf 0 endet, ist durch 2, 5 und 10 teilbar.', true], ['Eine Zahl, die auf 5 endet, kann nicht durch 4 teilbar sein.', true]],
+      ['Gegenbeispiele: 24 (bei 6 und 8) und 39 (Quersumme 12).', 'Bei 4 muss die Zahl gerade sein. Ist eine Zahl mit der Endziffer 5 gerade?'],
+      '24 ist durch 6 und durch 8 teilbar, aber nicht durch 48. 39 hat die Quersumme 12, ist aber ungerade und damit nicht durch 6 teilbar. 9 = 3 · 3. Endet die Zahl auf 0, passen 2, 5 und 10. Endet sie auf 5, ist sie ungerade und damit nicht durch 4 teilbar.'),
+    num(3, 'Wie heißt die <b>kleinste vierstellige Zahl</b>, die durch 2, 3 <b>und</b> 5 teilbar ist?', 1020,
+      ['Durch 2 und durch 5 teilbar heißt: Die Zahl endet auf 0.', 'Prüfe 1 000, 1 010, 1 020, … mit der Quersumme.'],
+      'Die Endziffer ist 0. 1 000: Quersumme 1 ✗. 1 010: Quersumme 2 ✗. 1 020: Quersumme 3 ✓. Also 1 020 = 30 · 34.'),
+    open(3, 'Ben sagt: „2&nbsp;634 ist durch 4 teilbar, denn 2 + 6 + 3 + 4 = 15 und 15 ist durch 3 teilbar.“ Finde Bens Fehler und erkläre, wie es richtig geht.',
+      ['Für welche Zahl gehört die Quersumme-Regel? Für welche Zahl gilt sie nicht?', 'Welche Ziffern musst du bei der Regel für 4 prüfen?'],
+      'Ben benutzt die Regel für 3, aber er will etwas über 4 sagen. Für 4 zählen die letzten zwei Ziffern: 34 : 4 = 8 Rest 2. Deshalb ist 2 634 nicht durch 4 teilbar. (Durch 3 ist die Zahl teilbar, denn die Quersumme 15 ist durch 3 teilbar.)',
+      ['Ich habe erklärt, dass die Quersumme zur Regel für 3 (und 9) gehört.', 'Ich habe die letzten zwei Ziffern 34 geprüft.', 'Ich habe geschrieben, dass 2 634 nicht durch 4 teilbar ist.']),
+  ],
+  quiz: [
+    pick('Welche Zahl ist durch 2, 3, 5, 9 <b>und</b> 10 teilbar?', n => n % 90 === 0, [180, 190, 135, 225], '180 endet auf 0 (2, 5, 10) und hat die Quersumme 9 (3 und 9).'),
+    qz('Bei welchen Zahlen brauchst du die Quersumme?', '3 und 9', ['2 und 5', '4 und 8', '5 und 10'], 'Für 3 und 9 addierst du alle Ziffern. Bei 2, 5 und 10 zählt die Endziffer, bei 4 und 8 die letzten Ziffern.'),
+    pick('Welche Zahl ist durch 8 teilbar?', n => n % 8 === 0, [3128, 5316, 7204, 9490], '3 128 endet auf 128, und 128 : 8 = 16.'),
+    qz('Welche Aussage stimmt?', 'Ist eine Zahl durch 6 teilbar, dann ist sie auch durch 3 teilbar.', ['Ist eine Zahl durch 3 teilbar, dann ist sie durch 6 teilbar.', 'Ist eine Zahl durch 4 teilbar, dann ist sie durch 8 teilbar.', 'Ist eine Zahl durch 5 teilbar, dann ist sie durch 10 teilbar.'], '6 = 2 · 3. Jedes Vielfache von 6 ist also auch ein Vielfaches von 3. Die anderen Aussagen sind falsch: 27, 12 und 15 sind Gegenbeispiele.'),
+    qz('Kim sagt: „2&nbsp;358 ist durch 4 teilbar, weil die Quersumme 18 ist.“ Was ist richtig?', 'Für 4 prüft man die letzten zwei Ziffern: 58 ist nicht durch 4 teilbar.', ['Kim hat recht, denn 18 ist durch 4 teilbar.', 'Kim hat recht, denn die Zahl ist gerade.', 'Für 4 prüft man die Endziffer: 8 ist durch 4 teilbar.'], 'Die Quersumme gehört zu 3 und 9. Bei 4 zählen die letzten zwei Ziffern: 58 : 4 = 14 Rest 2.'),
+    qz('Für welche Ziffer □ ist 3□6 durch 9 teilbar?', '0', ['3', '6', '8'], '3 + □ + 6 = 9 + □. Für 0 ist die Quersumme 9: 306 = 9 · 34.'),
+    qz('Wie viele Teiler hat die Zahl 20?', '6', ['4', '5', '8'], '1 · 20, 2 · 10, 4 · 5 → 1, 2, 4, 5, 10, 20.'),
+    qz('Welche Zahl ist ein Teiler von 60 <b>und</b> ein Vielfaches von 4?', '12', ['8', '15', '24'], '60 : 12 = 5 ohne Rest und 12 = 4 · 3. 8 und 24 teilen 60 nicht, 15 ist kein Vielfaches von 4.'),
+  ],
+  kann: ['Ich kann feststellen, ob eine Zahl durch 2, 3, 4, 5, 6, 8, 9 oder 10 teilbar ist.', 'Ich kann meine Entscheidung mit einer Teilbarkeitsregel begründen.', 'Ich kann mehrere Teilbarkeitsregeln miteinander kombinieren.', 'Ich kann fehlende Ziffern so bestimmen, dass eine Zahl durch eine bestimmte Zahl teilbar ist.', 'Ich kann Aussagen über Teilbarkeit auf richtig oder falsch überprüfen und meine Entscheidung begründen.'],
+});
+
+/* ====================================================================
+   Programm (muss für neue Kapitel nicht verändert werden)
+   ==================================================================== */
+(function () {
+  'use strict';
+  const KEY = 'teilbarkeit-klasse6-v1';
+  const LV = {
+    1: { name: 'leicht', cls: 'l1', dots: '●○○', titel: 'Leichte Aufgaben', sub: 'zum Einstieg' },
+    2: { name: 'mittel', cls: 'l2', dots: '●●○', titel: 'Mittlere Aufgaben', sub: 'zum Üben' },
+    3: { name: 'schwer', cls: 'l3', dots: '●●●', titel: 'Schwere Aufgaben', sub: 'zum Knobeln' },
+  };
+
+  /* ---------- kleine Helfer ---------- */
+  const h = (tag, attrs, ...kids) => {
+    const e = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v === false || v == null) continue;
+      if (k === 'class') e.className = v;
+      else if (k === 'html') e.innerHTML = v;
+      else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+      else if (v === true) e.setAttribute(k, '');
+      else e.setAttribute(k, v);
+    }
+    kids.flat().forEach(c => { if (c != null && c !== false) e.append(c.nodeType ? c : document.createTextNode(c)); });
+    return e;
+  };
+  const setKids = (el, ...kids) => el.replaceChildren(...kids.flat().filter(k => k != null && k !== false));
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const sortedNums = a => a.slice().sort((x, y) => x - y);
+  let uid = 0;
+  const nextId = () => 'u' + (++uid);
+
+  /* ---------- Speicher (nur auf diesem Gerät) ---------- */
+  const store = (() => {
+    let mem = { solved: {}, quiz: {}, kann: {}, level: {} };
+    try { const raw = localStorage.getItem(KEY); if (raw) mem = Object.assign(mem, JSON.parse(raw)); } catch (e) { /* ohne Speicher weiterarbeiten */ }
+    mem.level = mem.level || {};
+    return { data: mem, save() { try { localStorage.setItem(KEY, JSON.stringify(mem)); } catch (e) { /* ignorieren */ } } };
+  })();
+  let teacher = false;
+  try { teacher = sessionStorage.getItem(KEY + ':t') === '1'; } catch (e) { /* ignorieren */ }
+  let current = 'start';
+  try { current = sessionStorage.getItem(KEY + ':view') || 'start'; } catch (e) { /* ignorieren */ }
+
+  const isOpen = id => FREIGEGEBEN.includes(id);
+  const visible = () => CHAPTERS.filter(c => teacher || isOpen(c.id));
+  const chapterById = id => CHAPTERS.find(c => c.id === id);
+  const chosen = c => store.data.level[c.id] || null;
+  const levelTasks = c => { const l = chosen(c); return l ? c.tasks.map((t, i) => [t, i]).filter(([t]) => t.lvl === +l) : []; };
+  const solvedCount = c => levelTasks(c).filter(([, i]) => store.data.solved[`${c.id}-${i + 1}`]).length;
+  const progressText = c => { const l = chosen(c); return l ? `Stufe ${LV[l].name}: ${solvedCount(c)}/${levelTasks(c).length}` : 'Stufe noch wählen'; };
+
+  /* ---------- Regel-Erklärungen ---------- */
+  const COMBOS = { 6: [2, 3], 12: [3, 4], 15: [3, 5], 18: [2, 9], 24: [3, 8], 30: [3, 10] };
+  function explain(n, d) {
+    const s = String(n), fm = f;
+    const end = s.slice(-1);
+    const yes = (t) => `${t} ✓`, no = (t) => `${t} ✗`;
+    switch (d) {
+      case 2: { const ok = n % 2 === 0; return { ok, steps: [`Endziffer: ${end}`, ok ? yes(`${end} ist 0, 2, 4, 6 oder 8`) : no(`${end} ist keine der Ziffern 0, 2, 4, 6, 8`)] }; }
+      case 5: { const ok = end === '0' || end === '5'; return { ok, steps: [`Endziffer: ${end}`, ok ? yes(`${end} ist 0 oder 5`) : no(`${end} ist weder 0 noch 5`)] }; }
+      case 10: { const ok = end === '0'; return { ok, steps: [`Endziffer: ${end}`, ok ? yes('Die Endziffer ist 0') : no('Die Endziffer ist nicht 0')] }; }
+      case 4: case 8: {
+        const k = d === 4 ? 2 : 3, t = s.slice(-k), v = parseInt(t, 10), ok = v % d === 0;
+        const word = d === 4 ? 'zwei' : 'drei';
+        return { ok, steps: [`Letzte ${word} Ziffern: ${t}`, ok ? yes(`${v} : ${d} = ${v / d} ohne Rest`) : no(`${v} : ${d} = ${Math.floor(v / d)} Rest ${v % d}`)] };
+      }
+      case 3: case 9: {
+        const q = qs(n), ok = q % d === 0;
+        const sum = s.split('').join(' + ') + ' = ' + q;
+        return { ok, steps: [`Quersumme: ${sum}`, ok ? yes(`${q} : ${d} = ${q / d} ohne Rest`) : no(`${q} : ${d} = ${Math.floor(q / d)} Rest ${q % d}`)] };
+      }
+      default: {
+        const parts = COMBOS[d];
+        const steps = [`Zerlege: ${d} = ${parts.join(' · ')}`];
+        let ok = true;
+        parts.forEach(p => { const r = explain(n, p); ok = ok && r.ok; steps.push(`Regel für ${p}: ` + r.steps.join(' → ')); });
+        steps.push(ok ? yes('Beide Regeln stimmen') : no('Mindestens eine Regel stimmt nicht'));
+        return { ok, steps };
+      }
+    }
+  }
+  function parseInt10(s) { const c = String(s).replace(/[\s\u00A0.]/g, ''); return /^\d+$/.test(c) ? parseInt(c, 10) : null; }
+
+  /* ---------- Wissens-Werkzeuge (grün) ---------- */
+  function toolTester() {
+    const a = h('input', { class: 'tin', inputmode: 'numeric', placeholder: 'z. B. 24', 'aria-label': 'Zahl' });
+    const b = h('input', { class: 'tin', inputmode: 'numeric', placeholder: 'z. B. 6', 'aria-label': 'Teiler' });
+    const out = h('div', { class: 'tout', 'aria-live': 'polite' }, 'Gib zwei Zahlen ein.');
+    function run() {
+      const x = parseInt10(a.value), y = parseInt10(b.value);
+      out.classList.remove('no');
+      if (x === null || y === null || a.value.trim() === '' || b.value.trim() === '') { out.textContent = 'Gib zwei Zahlen ein.'; return; }
+      if (y === 0) { out.textContent = 'Durch 0 kannst du nicht teilen.'; return; }
+      if (x > 999999 || y > 999999) { out.textContent = 'Nimm etwas kleinere Zahlen (bis 999 999).'; return; }
+      const q = Math.floor(x / y), r = x % y;
+      if (r === 0) {
+        out.innerHTML = `<b>${f(x)} : ${f(y)} = ${f(q)}</b> – es bleibt kein Rest.<br>• ${f(x)} ist durch ${f(y)} <b>teilbar</b>.<br>• ${f(y)} ist ein <b>Teiler</b> von ${f(x)}.<br>• ${f(x)} ist ein <b>Vielfaches</b> von ${f(y)} (${f(y)} · ${f(q)} = ${f(x)}).`;
+      } else {
+        out.classList.add('no');
+        out.innerHTML = `<b>${f(x)} : ${f(y)} = ${f(q)} Rest ${f(r)}</b><br>• ${f(x)} ist <b>nicht</b> durch ${f(y)} teilbar.<br>• ${f(y)} ist <b>kein</b> Teiler von ${f(x)}.<br>• ${f(x)} ist <b>kein</b> Vielfaches von ${f(y)}.`;
+      }
+    }
+    a.addEventListener('input', run); b.addEventListener('input', run);
+    return h('div', { class: 'tool' }, h('h4', {}, 'Probier es aus: Teiler-Tester'),
+      h('div', { class: 'trow' }, 'Zahl', a, 'geteilt durch', b), out);
+  }
+  function toolHtafel() {
+    let sel = 7;
+    const chips = h('div', { class: 'chips', role: 'group', 'aria-label': 'Zahl wählen' });
+    const board = h('div', { class: 'htafel', role: 'img', 'aria-label': 'Hunderttafel mit markierten Vielfachen' });
+    const list = h('div', { class: 'tout' });
+    const btns = [];
+    for (let k = 2; k <= 10; k++) { const bt = h('button', { class: 'chip-b', type: 'button', 'aria-pressed': String(k === sel), onclick: () => { sel = k; draw(); } }, String(k)); btns.push(bt); chips.append(bt); }
+    function draw() {
+      btns.forEach((bt, i) => bt.setAttribute('aria-pressed', String(i + 2 === sel)));
+      board.replaceChildren();
+      for (let n = 1; n <= 100; n++) board.append(h('span', { class: n % sel === 0 ? 'hit' : '' }, String(n)));
+      list.innerHTML = `<b>Vielfache von ${sel}</b> bis 100: ${mults(sel, sel, 100).join(', ')}`;
+    }
+    draw();
+    return h('div', { class: 'tool' }, h('h4', {}, 'Probier es aus: Hunderttafel'),
+      h('div', { class: 'trow' }, 'Zeige die Vielfachen von', chips), board, list);
+  }
+  function toolRegel(rules) {
+    let sel = rules[0];
+    const inp = h('input', { class: 'tin', inputmode: 'numeric', placeholder: 'z. B. 372', 'aria-label': 'Zahl eingeben' });
+    const chips = h('div', { class: 'chips', role: 'group', 'aria-label': 'Regel wählen' });
+    const out = h('div', { class: 'tout', 'aria-live': 'polite' });
+    const btns = rules.map(r => { const bt = h('button', { class: 'chip-b', type: 'button', 'aria-pressed': String(r === sel), onclick: () => { sel = r; run(); } }, String(r)); chips.append(bt); return bt; });
+    function run() {
+      btns.forEach((bt, i) => bt.setAttribute('aria-pressed', String(rules[i] === sel)));
+      out.classList.remove('no');
+      const n = parseInt10(inp.value);
+      if (inp.value.trim() === '') { out.textContent = 'Gib eine Zahl ein und wähle die Regel.'; return; }
+      if (n === null || n < 1 || n > 999999999) { out.textContent = 'Bitte gib eine natürliche Zahl ein (bis 999 999 999).'; return; }
+      const r = explain(n, sel);
+      if (!r.ok) out.classList.add('no');
+      out.innerHTML = `<b>${f(n)} ist ${r.ok ? '' : 'nicht '}durch ${sel} teilbar.</b><ul class="steps">${r.steps.map(s => `<li>${s}</li>`).join('')}</ul>`;
+    }
+    inp.addEventListener('input', run);
+    run();
+    return h('div', { class: 'tool' }, h('h4', {}, 'Probier es aus: Regel-Prüfer'),
+      h('div', { class: 'trow' }, 'Zahl', inp, 'teilbar durch', chips), out);
+  }
+
+  /* ---------- Aufgaben-Bausteine ---------- */
+  const W = {};
+  const fail = (msg) => ({ ok: false, msg });
+  const incomplete = (msg) => ({ incomplete: true, msg });
+
+  W.num = (t) => {
+    const inp = h('input', { class: 'inp', type: 'text', inputmode: 'numeric', autocomplete: 'off', 'aria-label': 'Deine Antwort', placeholder: 'Antwort' });
+    return {
+      el: h('div', { class: 'w-num' }, inp, t.unit ? h('span', { class: 'unit' }, t.unit) : null),
+      check() {
+        if (!inp.value.trim()) return incomplete('Trage zuerst eine Zahl ein.');
+        const n = parseInt10(inp.value);
+        if (n === null) return incomplete('Bitte schreibe nur eine Zahl.');
+        return [].concat(t.answer).includes(n) ? { ok: true } : fail('Noch nicht ganz. Rechne noch einmal nach – oder nutze einen Tipp.');
+      },
+      reveal: () => `Lösung: <b>${[].concat(t.answer).map(f).join(' oder ')}</b>`,
+    };
+  };
+
+  W.set = (t) => {
+    const inp = h('input', { class: 'inp', type: 'text', autocomplete: 'off', 'aria-label': 'Deine Antworten, durch Kommas getrennt', placeholder: t.ph || 'Zahlen mit Komma trennen' });
+    return {
+      el: h('div', {}, inp),
+      check() {
+        const raw = inp.value.trim();
+        if (!raw) return incomplete('Schreibe deine Zahlen auf, getrennt durch Kommas.');
+        const toks = raw.replace(/\bund\b/gi, ',').split(/[,;\s]+/).filter(Boolean);
+        if (toks.some(x => !/^\d+$/.test(x))) return incomplete('Schreibe nur Zahlen und trenne sie mit Kommas.');
+        const U = new Set(toks.map(Number)), A = new Set(t.answer);
+        const wrong = [...U].filter(x => !A.has(x)), missing = [...A].filter(x => !U.has(x));
+        if (!wrong.length && !missing.length) return { ok: true };
+        if (wrong.length) return fail(wrong.length === 1 ? 'Eine deiner Zahlen passt nicht. Prüfe sie noch einmal.' : 'Einige deiner Zahlen passen nicht. Prüfe sie noch einmal.');
+        return fail(`Alles, was du aufgeschrieben hast, stimmt – aber es ${missing.length === 1 ? 'fehlt noch 1 Zahl' : 'fehlen noch ' + missing.length + ' Zahlen'}.`);
+      },
+      reveal: () => `Lösung: <b>${sortedNums(t.answer).map(f).join(', ')}</b>`,
+    };
+  };
+
+  function choiceWidget(t, multiple) {
+    const name = nextId();
+    const rows = shuffle(t.opts.map((text, i) => ({ text, ok: t.ok.includes(i) }))).map((o, i) => {
+      const inp = h('input', { type: multiple ? 'checkbox' : 'radio', name, id: `${name}-${i}` });
+      const lab = h('label', { class: 'opt', for: `${name}-${i}` }, inp, h('span', { html: o.text }));
+      inp.addEventListener('change', () => rows.forEach(r => r.lab.classList.remove('wrong')));
+      return { o, inp, lab };
+    });
+    return {
+      el: h('div', { class: 'opts', role: multiple ? 'group' : 'radiogroup' }, rows.map(r => r.lab)),
+      check() {
+        const sel = rows.filter(r => r.inp.checked);
+        if (!sel.length) return incomplete(multiple ? 'Wähle mindestens eine Antwort aus.' : 'Wähle eine Antwort aus.');
+        const bad = sel.filter(r => !r.o.ok), missing = rows.filter(r => r.o.ok && !r.inp.checked);
+        bad.forEach(r => r.lab.classList.add('wrong'));
+        if (!bad.length && !missing.length) return { ok: true };
+        if (bad.length) return fail(multiple ? 'Mindestens eine deiner Antworten passt nicht.' : 'Das passt noch nicht. Lies die Aufgabe noch einmal.');
+        return fail('Das stimmt – aber es fehlen noch richtige Antworten.');
+      },
+      reveal: () => (multiple ? 'Richtig sind: ' : 'Richtig ist: ') + rows.filter(r => r.o.ok).map(r => `<b>${r.o.text}</b>`).join(', '),
+    };
+  }
+  W.mc = t => choiceWidget(t, false);
+  W.multi = t => choiceWidget(t, true);
+
+  W.tf = (t) => {
+    const rows = t.items.map(([text, val]) => {
+      const name = nextId();
+      const rw = h('input', { type: 'radio', name, value: 'w' }), rf = h('input', { type: 'radio', name, value: 'f' });
+      const tr = h('tr', {}, h('td', { html: text }), h('td', { class: 'tfo' }, h('label', {}, rw, ' wahr'), h('label', {}, rf, ' falsch')));
+      [rw, rf].forEach(x => x.addEventListener('change', () => tr.classList.remove('wrong')));
+      return { val, rw, rf, tr };
+    });
+    return {
+      el: h('table', { class: 'tf' }, h('tbody', {}, rows.map(r => r.tr))),
+      check() {
+        if (rows.some(r => !r.rw.checked && !r.rf.checked)) return incomplete('Beantworte alle Aussagen mit „wahr“ oder „falsch“.');
+        let good = 0;
+        rows.forEach(r => { const ans = r.rw.checked; if (ans === r.val) good++; else r.tr.classList.add('wrong'); });
+        return good === rows.length ? { ok: true } : fail(`${good} von ${rows.length} Aussagen stimmen. Die rot markierten Aussagen prüfe noch einmal.`);
+      },
+      reveal: () => '<ul>' + t.items.map(([text, val]) => `<li>${text} → <b>${val ? 'wahr' : 'falsch'}</b></li>`).join('') + '</ul>',
+    };
+  };
+
+  W.cloze = (t) => {
+    const selects = t.blanks.map((opts, i) => h('select', { 'aria-label': `Lücke ${i + 1}` }, h('option', { value: '' }, '…'), opts.map(o => h('option', { value: o }, o))));
+    selects.forEach(s => s.addEventListener('change', () => s.classList.remove('wrong')));
+    const wrap = h('div', { class: 'cloze' });
+    t.text.split(/(\{\d+\})/).forEach(part => {
+      const m = part.match(/^\{(\d+)\}$/);
+      if (m) wrap.append(selects[+m[1]]); else wrap.append(h('span', { html: part }));
+    });
+    return {
+      el: wrap,
+      check() {
+        if (selects.some(s => !s.value)) return incomplete('Wähle für jede Lücke ein Wort aus.');
+        let good = 0;
+        selects.forEach((s, i) => { if (s.value === t.answer[i]) good++; else s.classList.add('wrong'); });
+        return good === selects.length ? { ok: true } : fail('Mindestens ein Wort passt nicht. Die rot markierten Lücken prüfe noch einmal.');
+      },
+      reveal: () => 'Lösung: ' + t.text.replace(/\{(\d+)\}/g, (_, i) => `<b>${t.answer[+i]}</b>`),
+    };
+  };
+
+  W.grid = (t) => {
+    const cells = t.nums.map(n => ({ n, boxes: t.cols.map(c => ({ c, inp: h('input', { type: 'checkbox', 'aria-label': `${f(n)} ist durch ${c} teilbar` }) })) }));
+    cells.forEach(r => { r.tr = h('tr', {}, h('td', {}, f(r.n)), r.boxes.map(b => h('td', {}, b.inp))); r.boxes.forEach(b => b.inp.addEventListener('change', () => r.tr.classList.remove('wrong'))); });
+    return {
+      el: h('div', { class: 'gscroll' }, h('table', { class: 'gridt' },
+        h('thead', {}, h('tr', {}, h('th', {}, 'Zahl'), t.cols.map(c => h('th', {}, `durch ${c}`)))),
+        h('tbody', {}, cells.map(r => r.tr)))),
+      check() {
+        let bad = 0;
+        cells.forEach(r => { const wrong = r.boxes.some(b => b.inp.checked !== (r.n % b.c === 0)); if (wrong) { bad++; r.tr.classList.add('wrong'); } });
+        return bad === 0 ? { ok: true } : fail(bad === 1 ? 'In einer Zeile stimmt noch etwas nicht (rot markiert).' : `In ${bad} Zeilen stimmt noch etwas nicht (rot markiert).`);
+      },
+      reveal: () => '<ul>' + t.nums.map(n => { const ok = t.cols.filter(c => n % c === 0); return `<li>${f(n)}: ${ok.length ? 'durch ' + ok.join(', ') + ' teilbar' : 'durch keine dieser Zahlen teilbar'}</li>`; }).join('') + '</ul>',
+    };
+  };
+
+  W.open = (t) => {
+    const ta = h('textarea', { class: 'inp', 'aria-label': 'Deine Antwort', placeholder: 'Schreibe deine Antwort hier auf …' });
+    return { el: ta, check: () => ({ ok: true }), reveal: () => '', open: true };
+  };
+
+  function taskView(c, t, idx, refresh) {
+    const id = `${c.id}-${idx + 1}`, L = LV[t.lvl];
+    const wd = W[t.type](t);
+    let attempts = 0, tipsShown = 0, solShown = false;
+    const badge = h('span', { class: 'done-badge', hidden: !store.data.solved[id] }, '✓ geschafft');
+    const fb = h('div', { class: 'fb', role: 'status', 'aria-live': 'polite' });
+    const tipsBox = h('div', { class: 'tips' });
+    const solBox = h('div', { class: 'sol', hidden: true });
+    const btnCheck = h('button', { class: 'btn primary', type: 'button' }, t.type === 'open' ? 'Musterlösung zeigen' : 'Prüfen');
+    const tips = t.tips || [];
+    const btnTip = h('button', { class: 'btn ghost', type: 'button' });
+    const btnSol = h('button', { class: 'btn ghost', type: 'button', hidden: true }, 'Lösung ansehen');
+    const setFb = (kind, msg) => { fb.replaceChildren(h('span', { class: 'm ' + kind }, msg)); };
+    const updTip = () => { btnTip.textContent = tipsShown >= tips.length ? 'Alle Tipps gezeigt' : `💡 Tipp ${tipsShown + 1} von ${tips.length}`; btnTip.disabled = tipsShown >= tips.length; if (!tips.length) btnTip.hidden = true; };
+    function markSolved() {
+      if (!store.data.solved[id]) { store.data.solved[id] = true; store.save(); }
+      badge.hidden = false; refresh();
+    }
+    function showSol(afterOk) {
+      solShown = true; solBox.hidden = false; solBox.replaceChildren();
+      if (t.type === 'open') {
+        solBox.append(h('h4', {}, 'Musterlösung'), h('p', { html: t.sol }));
+        const boxes = (t.crit || []).map(txt => { const i = h('input', { type: 'checkbox' }); return { i, el: h('label', {}, i, txt) }; });
+        solBox.append(h('p', {}, h('b', {}, 'Vergleiche mit deiner Antwort:')), h('div', { class: 'crit' }, boxes.map(b => b.el)));
+        const okBtn = h('button', { class: 'btn primary', type: 'button', onclick: () => { markSolved(); setFb('ok', 'Super, du hast deine Antwort geprüft! ✓'); } }, 'Meine Antwort passt');
+        const againBtn = h('button', { class: 'btn ghost', type: 'button', onclick: () => { solBox.hidden = true; solShown = false; btnCheck.hidden = false; wd.el.focus(); } }, 'Ich überarbeite meine Antwort');
+        solBox.append(h('div', { class: 'actions' }, okBtn, againBtn));
+        btnCheck.hidden = true; return;
+      }
+      solBox.append(h('h4', {}, afterOk ? 'So kommst du darauf' : 'Lösung'));
+      const rv = wd.reveal(); if (rv) solBox.append(h('p', { html: rv }));
+      if (t.sol) solBox.append(h('p', { html: t.sol }));
+      btnSol.hidden = true;
+    }
+    btnCheck.addEventListener('click', () => {
+      if (t.type === 'open') { showSol(false); return; }
+      const r = wd.check();
+      if (r.incomplete) { setFb('info', r.msg); return; }
+      attempts++;
+      if (r.ok) { setFb('ok', '✓ Richtig! Gut gemacht.'); markSolved(); showSol(true); }
+      else { setFb('bad', r.msg); if (!solShown) btnSol.hidden = false; }
+    });
+    btnTip.addEventListener('click', () => {
+      if (tipsShown >= tips.length) return;
+      tipsBox.append(h('div', { class: 'tip' }, h('span', { 'aria-hidden': 'true' }, '💡'), h('span', { html: `<b>Tipp ${tipsShown + 1}:</b> ${tips[tipsShown]}` })));
+      tipsShown++; updTip();
+      if (tipsShown >= tips.length && t.type !== 'open' && !solShown) btnSol.hidden = false;
+    });
+    btnSol.addEventListener('click', () => showSol(false));
+    wd.el.addEventListener && wd.el.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type === 'text') { e.preventDefault(); btnCheck.click(); } });
+    updTip();
+    return h('article', { class: `task ${L.cls}`, id: 'task-' + id },
+      h('header', { class: 'thead' }, h('span', { class: 'chip' }, `${L.name} ${L.dots}`), h('h3', {}, `Aufgabe ${idx + 1}`), badge),
+      h('div', { class: 'q', html: t.q }),
+      h('div', { class: 'ans' }, wd.el),
+      h('div', { class: 'actions' }, btnCheck, btnTip, btnSol),
+      tipsBox, fb, solBox);
+  }
+
+  /* ---------- Quiz ---------- */
+  function quizView(c, refresh) {
+    const box = h('div', { class: 'quiz', id: 'quiz-' + c.id });
+    const n = c.quiz.length;
+    function intro() {
+      const best = store.data.quiz[c.id];
+      setKids(box,
+        h('h2', {}, 'Quiz zum Kapitel'),
+        h('p', {}, `${n} Fragen zu diesem Kapitel. Bei einer Frage ist genau eine Antwort richtig. Im Quiz gibt es keine Tipps – zeig, was du kannst!`),
+        best ? h('p', {}, h('b', {}, `Dein bestes Ergebnis: ${best.score} von ${best.total}`)) : null,
+        h('button', { class: 'btn ink', type: 'button', onclick: start }, best ? 'Quiz noch einmal starten' : 'Quiz starten'));
+    }
+    function start() {
+      const qs2 = c.quiz.map(q => ({ ...q, o: shuffle(q.opts.map((text, i) => ({ text, ok: i === 0 }))) }));
+      let i = 0, score = 0; const log = [];
+      const show = () => {
+        const q = qs2[i], opts = h('div', { class: 'qopts' }), exp = h('div', { class: 'qexp', hidden: true, role: 'status', 'aria-live': 'polite' });
+        const next = h('button', { class: 'btn ink', type: 'button', hidden: true, onclick: () => { i++; i < n ? show() : end(); } }, i === n - 1 ? 'Ergebnis ansehen' : 'Weiter');
+        q.o.forEach(o => {
+          const b = h('button', { class: 'qopt', type: 'button', html: o.text });
+          b.addEventListener('click', () => {
+            [...opts.children].forEach((x, k) => { x.disabled = true; if (q.o[k].ok) x.classList.add('ok'); });
+            if (o.ok) { score++; exp.innerHTML = '<b>✓ Richtig!</b> ' + q.expl; } else { b.classList.add('bad'); exp.innerHTML = '<b>✗ Leider falsch.</b> ' + q.expl; }
+            log.push({ q: q.q, ok: o.ok, right: q.o.find(x => x.ok).text });
+            exp.hidden = false; next.hidden = false; next.focus();
+          });
+          opts.append(b);
+        });
+        box.replaceChildren(
+          h('div', { class: 'qprog' }, h('span', {}, `Frage ${i + 1} von ${n}`), h('span', { class: 'bar' }, h('i', { style: `width:${(i / n) * 100}%` }))),
+          h('div', { class: 'qq', html: q.q }), opts, exp, h('div', { class: 'actions', style: 'margin-top:12px' }, next));
+      };
+      const end = () => {
+        const best = store.data.quiz[c.id];
+        if (!best || score >= best.score) store.data.quiz[c.id] = { score, total: n }; store.save();
+        const msg = score === n ? 'Perfekt! Alles richtig.' : score >= n * 0.8 ? 'Sehr gut!' : score >= n * 0.6 ? 'Gut gemacht – schau dir die Fehler noch einmal an.' : 'Übe die Aufgaben noch einmal und probiere das Quiz dann erneut.';
+        box.replaceChildren(
+          h('h2', {}, 'Dein Ergebnis'),
+          h('div', { class: 'qres' }, `${score} von ${n}`),
+          h('p', {}, msg),
+          h('ul', { class: 'review' }, log.map(l => h('li', {}, h('span', { class: l.ok ? 'r-ok' : 'r-bad' }, l.ok ? '✓' : '✗'), h('span', { html: l.ok ? l.q : `${l.q} <br><small>Richtig ist: ${l.right}</small>` })))),
+          h('div', { class: 'actions' }, h('button', { class: 'btn ink', type: 'button', onclick: start }, 'Nochmal versuchen'),
+            h('button', { class: 'btn line', type: 'button', onclick: () => document.getElementById('a-' + c.id)?.scrollIntoView() }, 'Zurück zu den Aufgaben')));
+        refresh();
+      };
+      show();
+    }
+    intro();
+    return box;
+  }
+
+  /* ---------- Seiten ---------- */
+  const main = document.getElementById('main'), nav = document.getElementById('nav');
+
+  function go(name) {
+    current = name;
+    try { sessionStorage.setItem(KEY + ':view', name); } catch (e) { /* ignorieren */ }
+    renderMain(); renderNav(); window.scrollTo({ top: 0 });
+  }
+  function renderNav() {
+    const list = h('ul', { class: 'navlist' });
+    visible().forEach(c => {
+      const solved = solvedCount(c), total = levelTasks(c).length || 3, q = store.data.quiz[c.id];
+      const btn = h('button', { class: 'navbtn', type: 'button', 'aria-current': current === c.id ? 'page' : false, onclick: () => go(c.id) },
+        h('span', { class: 'no' }, String(c.nr)),
+        h('span', {}, h('span', { class: 'tt' }, c.title, c.id === NEU && isOpen(c.id) ? h('span', { class: 'tag-neu' }, 'neu') : null, !isOpen(c.id) ? h('span', { class: 'tag-lock' }, 'gesperrt') : null),
+          h('span', { class: 'meta' }, h('span', { class: 'bar', 'aria-hidden': 'true' }, h('i', { style: `width:${(solved / total) * 100}%` })), h('span', {}, `${chosen(c) ? solved + '/' + total + ' · ' + LV[chosen(c)].name : 'Stufe wählen'}${q ? ' · Quiz ' + q.score + '/' + q.total : ''}`))));
+      list.append(h('li', {}, btn));
+    });
+    setKids(nav,
+      h('button', { class: 'brand', type: 'button', onclick: () => go('start'), 'aria-current': current === 'start' ? 'page' : false }, h('strong', {}, 'Teilbarkeit'), h('span', {}, 'Mathe · Klasse 6')),
+      list,
+      teacher ? null : h('p', { class: 'navhint' }, 'Neue Kapitel erscheinen, sobald wir sie im Unterricht besprochen haben.'));
+    const tb = document.getElementById('teacherbar'); tb.hidden = !teacher;
+  }
+  function refreshProgress() { renderNav(); document.querySelectorAll('[data-fcount]').forEach(el => { el.textContent = fcount(el.dataset.fcount); }); }
+  let currentChapter = null;
+  function fcount(lvl) {
+    const c = currentChapter; if (!c) return '';
+    const idxs = c.tasks.map((t, i) => [t, i]).filter(([t]) => lvl === 'alle' || t.lvl === +lvl);
+    const s = idxs.filter(([, i]) => store.data.solved[`${c.id}-${i + 1}`]).length;
+    return `${s}/${idxs.length}`;
+  }
+
+  function startView() {
+    const wrap = h('div', { class: 'stack' });
+    const vis = visible();
+    const hero = h('section', { class: 'panel hero' },
+      h('h1', {}, 'Teilbarkeit'),
+      h('p', { class: 'sub' }, 'Hier übst du, was wir im Unterricht besprechen: teilbar, Teiler, Vielfaches und die Teilbarkeitsregeln. Mit Tipps, einer Aufgaben-Stufe deiner Wahl und einem Quiz.'),
+      h('h2', { style: 'font-size:1.15rem;margin-top:1.2em' }, 'Die Farben helfen dir'),
+      h('div', { class: 'legend' },
+        h('div', { class: 'lg w' }, h('span', { class: 'sw' }), h('span', {}, h('b', {}, 'Grün: Wissen'), 'Das musst du wissen und dir merken.')),
+        h('div', { class: 'lg l1' }, h('span', { class: 'sw' }), h('span', {}, h('b', {}, 'Orange: leichte Aufgaben'), 'Zum Einstieg und Sichern. Du wählst eine Stufe.')),
+        h('div', { class: 'lg l2' }, h('span', { class: 'sw' }), h('span', {}, h('b', {}, 'Magenta: mittlere Aufgaben'), 'Zum Üben und Anwenden.')),
+        h('div', { class: 'lg l3' }, h('span', { class: 'sw' }), h('span', {}, h('b', {}, 'Lila: schwere Aufgaben'), 'Zum Knobeln und Begründen.'))));
+    const neu = chapterById(NEU);
+    if (neu && isOpen(NEU)) hero.append(h('div', { class: 'newbox' }, h('span', {}, h('strong', {}, `Neu: Kapitel ${neu.nr}`), neu.title), h('button', { class: 'btn primary', style: '--c:var(--mittel);--on:var(--on-mittel)', type: 'button', onclick: () => go(neu.id) }, 'Los geht’s')));
+    wrap.append(hero);
+    const sec = h('section', {}, h('h2', {}, 'Deine Kapitel'));
+    if (!vis.length) sec.append(h('p', { class: 'empty' }, 'Noch ist kein Kapitel freigeschaltet.'));
+    const g = h('div', { class: 'chgrid' });
+    vis.forEach(c => { const q = store.data.quiz[c.id]; g.append(h('button', { class: 'chcard', type: 'button', onclick: () => go(c.id) }, h('span', { class: 'no' }, String(c.nr)), h('span', { class: 'tt' }, c.title), h('span', { class: 'meta' }, `${progressText(c)}${q ? ' · Quiz ' + q.score + '/' + q.total : ''}`))); });
+    sec.append(g);
+    if (!teacher) sec.append(h('p', { class: 'empty', style: 'margin-top:14px' }, 'Weitere Kapitel erscheinen hier, sobald wir sie im Unterricht besprochen haben.'));
+    wrap.append(sec);
+    return wrap;
+  }
+
+  function chapterView(c) {
+    currentChapter = c;
+    const wrap = h('div', {});
+    wrap.append(h('header', { class: 'chead' }, h('span', { class: 'nr', 'aria-hidden': 'true' }, String(c.nr)), h('div', {}, h('h1', {}, c.title), h('p', { class: 'lead' }, c.lead))));
+    const jump = (id, label) => h('button', { type: 'button', onclick: () => document.getElementById(id).scrollIntoView() }, label);
+    wrap.append(h('nav', { class: 'jump', 'aria-label': 'Springe zu' }, jump('w-' + c.id, 'Wissen'), jump('a-' + c.id, 'Aufgaben'), jump('quiz-' + c.id, 'Quiz'), jump('k-' + c.id, 'Das kann ich')));
+    /* Wissen */
+    const wis = h('section', { class: 'wissen', id: 'w-' + c.id, html: c.wissen });
+    const tool = c.tool && (c.tool.type === 'tester' ? toolTester() : c.tool.type === 'htafel' ? toolHtafel() : toolRegel(c.tool.rules));
+    if (tool) wis.append(tool);
+    wrap.append(wis);
+    /* Aufgaben: Kinder wählen genau eine Stufe */
+    const sec = h('section', { id: 'a-' + c.id });
+    sec.append(h('h2', { class: 'section-h' }, 'Aufgaben'));
+    sec.append(h('p', { class: 'taskinfo' }, 'Wähle eine Stufe, die zu dir passt. Du bearbeitest die drei Aufgaben dieser Stufe. Später kannst du die Stufe wechseln. Bei jeder Aufgabe helfen dir Tipps – öffne sie einen nach dem anderen.'));
+    const groups = {}, picks = {};
+    let teacherAll = false;
+    const beschr = { 1: 'Zum Einstieg und Sichern', 2: 'Zum Üben und Anwenden', 3: 'Zum Knobeln und Begründen' };
+    const pickBox = h('div', { class: 'lvlpick', role: 'group', 'aria-label': 'Stufe wählen' });
+    const hint = h('p', { class: 'pickhint' }, 'Wähle oben eine Stufe – dann erscheinen die Aufgaben.');
+    function draw() {
+      const l = chosen(c);
+      [1, 2, 3].forEach(k => { picks[k].setAttribute('aria-pressed', String(!teacherAll && +l === k)); groups[k].hidden = !(teacherAll || +l === k); });
+      if (picks.alle) picks.alle.setAttribute('aria-pressed', String(teacherAll));
+      hint.hidden = !!l || teacherAll;
+    }
+    [1, 2, 3].forEach(l => {
+      const b = h('button', { class: 'lvlbtn ' + LV[l].cls, type: 'button', 'aria-pressed': 'false', onclick: () => { teacherAll = false; store.data.level[c.id] = String(l); store.save(); draw(); refreshProgress(); } },
+        h('b', {}, `${LV[l].name} ${LV[l].dots}`), h('span', {}, beschr[l]), h('small', {}, h('span', { 'data-fcount': String(l) }, ''), ' geschafft'));
+      picks[l] = b; pickBox.append(b);
+    });
+    if (teacher) { picks.alle = h('button', { class: 'lvlbtn', type: 'button', 'aria-pressed': 'false', onclick: () => { teacherAll = true; draw(); } }, h('b', {}, 'alle Stufen'), h('span', {}, 'nur Lehrkraft-Vorschau')); pickBox.append(picks.alle); }
+    sec.append(pickBox, hint);
+    [1, 2, 3].forEach(l => {
+      const grp = h('div', { class: 'group ' + LV[l].cls }, h('h3', {}, LV[l].titel, h('small', {}, LV[l].sub)));
+      c.tasks.forEach((t, i) => { if (t.lvl === l) grp.append(taskView(c, t, i, refreshProgress)); });
+      groups[l] = grp; sec.append(grp);
+    });
+    draw();
+    wrap.append(sec);
+    /* Quiz */
+    wrap.append(h('div', { id: 'q-' + c.id, style: 'margin-top:8px' }, quizView(c, refreshProgress)));
+    /* Kann-Liste */
+    const kb = h('section', { class: 'kann', id: 'k-' + c.id }, h('h2', { style: 'font-size:1.3rem' }, 'Das kann ich'), h('p', {}, 'Hake ab, was du sicher kannst.'));
+    c.kann.forEach((txt, i) => { const kid = `${c.id}-k${i}`; const cb = h('input', { type: 'checkbox', checked: !!store.data.kann[kid] }); cb.addEventListener('change', () => { store.data.kann[kid] = cb.checked; store.save(); }); kb.append(h('label', {}, cb, h('span', {}, txt))); });
+    wrap.append(h('div', { style: 'margin-top:26px' }, kb));
+    return wrap;
+  }
+
+  function renderMain() {
+    let c = chapterById(current);
+    if (current !== 'start' && (!c || !(teacher || isOpen(c.id)))) { current = 'start'; c = null; }
+    main.replaceChildren(current === 'start' ? (currentChapter = null, startView()) : chapterView(c));
+    if (current !== 'start') refreshProgress();
+    main.focus({ preventScroll: true });
+  }
+
+  /* ---------- Lehrkraft-Ansicht ---------- */
+  const dlg = document.getElementById('pin'), pinIn = document.getElementById('pinin'), pinErr = document.getElementById('pinerr');
+  document.getElementById('openpin').addEventListener('click', () => { pinErr.textContent = ''; pinIn.value = ''; if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); pinIn.focus(); });
+  document.getElementById('pincancel').addEventListener('click', () => dlg.close());
+  document.getElementById('pinform').addEventListener('submit', e => {
+    e.preventDefault();
+    if (pinIn.value === LEHRKRAFT_PIN) { teacher = true; try { sessionStorage.setItem(KEY + ':t', '1'); } catch (x) { /* ignorieren */ } dlg.close(); renderNav(); renderMain(); }
+    else pinErr.textContent = 'Das stimmt nicht.';
+  });
+  document.getElementById('endteacher').addEventListener('click', () => { teacher = false; try { sessionStorage.removeItem(KEY + ':t'); } catch (x) { /* ignorieren */ } renderNav(); renderMain(); });
+  document.getElementById('open-list').textContent = FREIGEGEBEN.map(id => (chapterById(id) || {}).nr).filter(Boolean).join(', ') || 'keine';
+
+  main.setAttribute('tabindex', '-1');
+  renderMain(); renderNav();
+  window.__teilbarkeit = { CHAPTERS, W, go, explain, store };
+})();
+
+
+</script>
+</body>
+</html>
